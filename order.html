@@ -1,0 +1,2593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Your Celebration - Wecae</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Variables */
+:root {
+  /* Colors */
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #3b82f6;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
+  --primary-900: #1e3a8a;
+
+  --secondary-50: #f0fdfa;
+  --secondary-100: #ccfbf1;
+  --secondary-200: #99f6e4;
+  --secondary-300: #5eead4;
+  --secondary-400: #2dd4bf;
+  --secondary-500: #14b8a6;
+  --secondary-600: #0d9488;
+  --secondary-700: #0f766e;
+  --secondary-800: #115e59;
+  --secondary-900: #134e4a;
+
+  --accent-pink: #ec4899;
+  --accent-purple: #8b5cf6;
+
+  --success-50: #f0fdf4;
+  --success-100: #dcfce7;
+  --success-200: #bbf7d0;
+  --success-300: #86efac;
+  --success-400: #4ade80;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+  --success-800: #166534;
+  --success-900: #14532d;
+
+  --warning-50: #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-200: #fde68a;
+  --warning-300: #fcd34d;
+  --warning-400: #fbbf24;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  --warning-800: #92400e;
+  --warning-900: #78350f;
+
+  --error-50: #fef2f2;
+  --error-100: #fee2e2;
+  --error-200: #fecaca;
+  --error-300: #fca5a5;
+  --error-400: #f87171;
+  --error-500: #ef4444;
+  --error-600: #dc2626;
+  --error-700: #b91c1c;
+  --error-800: #991b1b;
+  --error-900: #7f1d1d;
+
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Border Radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: var(--line-height-normal);
+  color: var(--gray-700);
+  background: var(--gray-50);
+}
+
+/* Common UI Components */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: var(--gray-800);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.logo-icon {
+  font-size: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-pink));
+  color: white;
+  padding: var(--space-4) var(--space-8);
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--gray-700);
+  padding: var(--space-4) var(--space-8);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gray-400);
+  transform: translateY(-1px);
+}
+
+/* Order Page Specific Styles */
+.order-page {
+    background: linear-gradient(135deg, #fefbff 0%, #f0f9ff 100%);
+    min-height: 100vh;
+}
+
+/* Order Header */
+.order-header {
+    background: #ffffff;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.order-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+/* Order Progress */
+.order-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    min-width: 60px;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active .step-number {
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-pink));
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.progress-step.completed .step-number {
+    background: var(--success-500);
+    color: white;
+}
+
+.step-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-500);
+    text-align: center;
+}
+
+.progress-step.active .step-label {
+    color: var(--primary-600);
+    font-weight: 600;
+}
+
+.progress-step.completed .step-label {
+    color: var(--success-500);
+    font-weight: 600;
+}
+
+.progress-connector {
+    width: 30px;
+    height: 2px;
+    background: var(--gray-200);
+    transition: all 0.3s ease;
+}
+
+.progress-connector.active {
+    background: var(--success-500);
+}
+
+/* Order Main */
+.order-main {
+    padding: var(--space-12) 0;
+}
+
+.order-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+/* Step Content */
+.step-content {
+    display: none;
+    animation: slideIn 0.5s ease-out;
+}
+
+.step-content.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+}
+
+.step-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: var(--gray-800);
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+}
+
+.step-subtitle {
+    font-size: 18px;
+    color: var(--gray-600);
+    line-height: var(--line-height-relaxed);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Step Form */
+.step-form {
+    background: #ffffff;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-100);
+    margin-bottom: var(--space-8);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Package Cards */
+.packages-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.package-card {
+    background: #ffffff;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.package-card:hover {
+    border-color: var(--primary-400);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
+}
+
+.package-card.selected {
+    border-color: var(--primary-500);
+    background: rgba(99, 102, 241, 0.02);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+}
+
+.package-card.featured {
+    border-color: var(--secondary-500);
+    position: relative;
+}
+
+.package-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary-500);
+    color: white;
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+}
+
+.package-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.package-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto var(--space-4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: var(--shadow-lg);
+}
+
+.package-icon.silver { 
+    background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+    color: var(--gray-700);
+}
+
+.package-icon.gold { 
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+}
+
+.package-icon.platinum { 
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+}
+
+.package-icon.custom { 
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+}
+
+.package-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-2);
+}
+
+.package-description {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: var(--line-height-relaxed);
+}
+
+.package-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+.package-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3);
+    background: var(--gray-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--gray-200);
+}
+
+.item-icon {
+    font-size: 20px;
+    margin-right: var(--space-2);
+}
+
+.item-name {
+    flex: 1;
+    font-weight: 500;
+    color: var(--gray-700);
+    text-align: left;
+}
+
+.fixed-quantity {
+    background: var(--primary-100);
+    color: var(--primary-700);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 30px;
+    text-align: center;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--gray-300);
+    padding: var(--space-1);
+}
+
+.quantity-control button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-control button:hover {
+    background: var(--primary-100);
+    color: var(--primary-600);
+}
+
+.quantity-control button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.quantity-control span {
+    min-width: 30px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.package-select-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-pink));
+    color: white;
+    padding: var(--space-4);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.package-select-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.package-card.selected .package-select-btn {
+    background: var(--success-500);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* Cake Selection */
+.cake-skip-option {
+    text-align: center;
+    margin-bottom: var(--space-10);
+}
+
+.skip-cake-btn {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    padding: var(--space-4) var(--space-8);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.skip-cake-btn:hover {
+    background: var(--gray-200);
+    color: var(--gray-700);
+    transform: translateY(-1px);
+}
+
+.skip-cake-btn.selected {
+    background: var(--success-100);
+    color: var(--success-700);
+    border-color: var(--success-300);
+}
+
+.cakes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.cake-card {
+    background: #ffffff;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.cake-card:hover {
+    border-color: var(--primary-400);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+}
+
+.cake-card.selected {
+    border-color: var(--primary-500);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2);
+}
+
+.cake-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cake-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.cake-card:hover .cake-image img {
+    transform: scale(1.08);
+}
+
+.cake-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: var(--space-3);
+}
+
+.cake-price {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 16px;
+    backdrop-filter: blur(8px);
+}
+
+.cake-content {
+    padding: var(--space-6);
+}
+
+.cake-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-1);
+}
+
+.cake-type {
+    font-size: 14px;
+    color: var(--primary-600);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cake-description {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+}
+
+.cake-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.cake-feature {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.cake-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+}
+
+.stars {
+    color: #fbbf24;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.rating-text {
+    font-size: 12px;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+/* Delivery Options */
+.delivery-options {
+    margin-top: var(--space-8);
+}
+
+.delivery-options-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-6);
+    text-align: center;
+}
+
+.delivery-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+}
+
+.delivery-card {
+    background: #ffffff;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.delivery-card:hover {
+    border-color: var(--primary-400);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.delivery-card.selected {
+    border-color: var(--primary-500);
+    background: rgba(99, 102, 241, 0.02);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+}
+
+.delivery-icon {
+    font-size: 32px;
+    margin-bottom: var(--space-3);
+}
+
+.delivery-card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-2);
+}
+
+.delivery-card p {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin-bottom: var(--space-3);
+}
+
+.delivery-price {
+    display: inline-block;
+    background: var(--primary-100);
+    color: var(--primary-700);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Step Navigation */
+.step-navigation {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: space-between;
+    margin-top: var(--space-10);
+}
+
+.btn-back {
+    background: transparent;
+    color: var(--gray-600);
+    padding: var(--space-4) var(--space-8);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-back:hover {
+    border-color: var(--gray-400);
+    color: var(--gray-700);
+    transform: translateY(-1px);
+}
+
+.btn-next {
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-pink));
+    color: white;
+    padding: var(--space-4) var(--space-8);
+    border: none;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 2;
+    min-width: 160px;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.btn-next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-next:disabled {
+    background: var(--gray-300);
+    color: var(--gray-500);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Summary Styles */
+.summary-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-bottom: var(--space-10);
+}
+
+.summary-section {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-100);
+    overflow: hidden;
+}
+
+.summary-section-title {
+    background: var(--gray-50);
+    color: var(--gray-800);
+    font-size: 18px;
+    font-weight: 700;
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--gray-200);
+    margin: 0;
+}
+
+.summary-card {
+    padding: var(--space-6);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--gray-100);
+    gap: var(--space-4);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    font-weight: 600;
+    color: var(--gray-700);
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.summary-value {
+    color: var(--gray-600);
+    font-size: 16px;
+    text-align: right;
+    flex: 1;
+}
+
+.summary-package-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+}
+
+.summary-package-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--gray-600);
+    padding: var(--space-2) var(--space-3);
+    background: var(--gray-50);
+    border-radius: var(--radius-sm);
+}
+
+/* Final Actions */
+.final-actions {
+    background: #ffffff;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-100);
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-6);
+    background: var(--primary-50);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--primary-200);
+}
+
+.total-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.total-amount {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-600);
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, var(--success-500), #059669);
+    color: white;
+    padding: var(--space-5) var(--space-8);
+    border: none;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 2;
+    min-width: 200px;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+/* Success Overlay */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+}
+
+.success-overlay.active {
+    display: flex;
+}
+
+.success-content {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: var(--shadow-xl);
+    animation: successSlideIn 0.5s ease-out;
+}
+
+@keyframes successSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.success-icon {
+    font-size: 64px;
+    margin-bottom: var(--space-6);
+}
+
+.success-content h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-4);
+}
+
+.success-content p {
+    color: var(--gray-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+}
+
+.success-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Package Card Enhancements */
+.package-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-pink));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.package-card.selected::before,
+.package-card:hover::before {
+    opacity: 1;
+}
+
+.cake-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-pink));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cake-card.selected::before,
+.cake-card:hover::before {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .order-progress {
+        gap: var(--space-1);
+    }
+
+    .progress-step {
+        min-width: 50px;
+    }
+
+    .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .step-label {
+        font-size: 11px;
+    }
+
+    .progress-connector {
+        width: 20px;
+    }
+
+    .packages-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-6);
+    }
+
+    .cakes-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-6);
+    }
+}
+
+@media (max-width: 768px) {
+    .order-header-content {
+        flex-direction: column;
+        gap: var(--space-4);
+        padding: var(--space-4);
+    }
+
+    .order-progress {
+        order: 2;
+        overflow-x: auto;
+        padding: var(--space-2);
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .order-main {
+        padding: var(--space-8) 0;
+    }
+
+    .order-container {
+        padding: 0 var(--space-4);
+    }
+
+    .step-form {
+        padding: var(--space-6);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .step-navigation {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .btn-back,
+    .btn-next,
+    .btn-submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .packages-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .cakes-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+    }
+
+    .delivery-cards {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .summary-container {
+        gap: var(--space-6);
+    }
+
+    .order-total {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-2);
+    }
+
+    .success-actions {
+        flex-direction: column;
+    }
+
+    .summary-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .summary-value {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .step-title {
+        font-size: 24px;
+    }
+
+    .step-subtitle {
+        font-size: 16px;
+    }
+
+    .package-card,
+    .cake-card,
+    .step-form,
+    .summary-section,
+    .final-actions {
+        padding: var(--space-5);
+    }
+
+    .package-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+
+    .package-name {
+        font-size: 20px;
+    }
+
+    .cake-image {
+        height: 180px;
+    }
+
+    .cake-content {
+        padding: var(--space-4);
+    }
+
+    .cake-name {
+        font-size: 18px;
+    }
+
+    .quantity-control button {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .order-progress {
+        gap: var(--space-1);
+    }
+
+    .progress-step {
+        min-width: 45px;
+    }
+
+    .step-number {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .step-label {
+        font-size: 10px;
+    }
+
+    .progress-connector {
+        width: 15px;
+    }
+}
+
+/* Focus States for Accessibility */
+.package-card:focus,
+.cake-card:focus,
+.delivery-card:focus {
+    outline: 3px solid rgba(99, 102, 241, 0.5);
+    outline-offset: 2px;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid rgba(99, 102, 241, 0.3);
+    outline-offset: 2px;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gray-300);
+    border-top-color: var(--primary-500);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+    </style>
+</head>
+
+<body class="order-page">
+    <!-- Header -->
+    <header class="order-header">
+        <div class="order-header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">🎂</div>
+                <span class="logo-text">Wecae</span>
+            </a>
+            <div class="order-progress">
+                <div class="progress-step active" id="progress1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Details</span>
+                </div>
+                <div class="progress-connector" id="connector1"></div>
+                <div class="progress-step" id="progress2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Package</span>
+                </div>
+                <div class="progress-connector" id="connector2"></div>
+                <div class="progress-step" id="progress3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Cake</span>
+                </div>
+                <div class="progress-connector" id="connector3"></div>
+                <div class="progress-step" id="progress4">
+                    <span class="step-number">4</span>
+                    <span class="step-label">Delivery</span>
+                </div>
+                <div class="progress-connector" id="connector4"></div>
+                <div class="progress-step" id="progress5">
+                    <span class="step-number">5</span>
+                    <span class="step-label">Confirm</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Order Content -->
+    <main class="order-main">
+        <div class="order-container">
+            
+            <!-- Step 1: Personal Details -->
+            <div class="step-content active" id="step1">
+                <div class="step-header">
+                    <h1 class="step-title">🎉 Let's Start Planning Your Celebration!</h1>
+                    <p class="step-subtitle">Tell us about your special moment and we'll make it unforgettable</p>
+                </div>
+                
+                <div class="step-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="celebrantName">Your Name</label>
+                            <input type="text" id="celebrantName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="celebrantPhone">Phone Number</label>
+                            <input type="tel" id="celebrantPhone" placeholder="+91 98765 43210" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="occasionType">Occasion Type</label>
+                            <select id="occasionType" required>
+                                <option value="">Select your celebration type</option>
+                                <option value="Birthday">🎂 Birthday</option>
+                                <option value="Anniversary">💕 Anniversary</option>
+                                <option value="Graduation">🎓 Graduation</option>
+                                <option value="Promotion">🎉 Job Promotion</option>
+                                <option value="Achievement">🏆 Achievement</option>
+                                <option value="Baby Shower">👶 Baby Shower</option>
+                                <option value="Engagement">💍 Engagement</option>
+                                <option value="Housewarming">🏠 Housewarming</option>
+                                <option value="Other">🎊 Other Special Occasion</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="occasionDate">Celebration Date</label>
+                            <input type="date" id="occasionDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="occasionLocation">Celebration Location</label>
+                        <input type="text" id="occasionLocation" placeholder="Enter delivery address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialNotes">Special Notes (Optional)</label>
+                        <textarea id="specialNotes" rows="3" placeholder="Any special requirements or preferences..."></textarea>
+                    </div>
+                </div>
+
+                <div class="step-navigation">
+                    <a href="/" class="btn-back">← Back to Home</a>
+                    <button class="btn-next" onclick="nextStep(2)" id="step1Next" disabled>Continue to Packages →</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Package Selection -->
+            <div class="step-content" id="step2">
+                <div class="step-header">
+                    <h1 class="step-title">📦 Choose Your Perfect Package</h1>
+                    <p class="step-subtitle">Select from our curated packages with fixed quantities, or create your own custom set</p>
+                </div>
+                
+                <div class="packages-container">
+                    <!-- Silver Package -->
+                    <div class="package-card" data-package="silver" onclick="selectPackage('silver')">
+                        <div class="package-header">
+                            <div class="package-icon silver">🥈</div>
+                            <h3 class="package-name">Silver Package</h3>
+                            <p class="package-description">Perfect for intimate celebrations with essential party items</p>
+                        </div>
+                        <div class="package-items">
+                            <div class="package-item">
+                                <span class="item-icon">🎉</span>
+                                <span class="item-name">Party Poppers</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🕯️</span>
+                                <span class="item-name">Sparkling Candles</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎩</span>
+                                <span class="item-name">Party Hat</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🧻</span>
+                                <span class="item-name">Tissue Set</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                        </div>
+                        <button class="package-select-btn">
+                            Select Silver Package
+                        </button>
+                    </div>
+
+                    <!-- Gold Package -->
+                    <div class="package-card featured" data-package="gold" onclick="selectPackage('gold')">
+                        <div class="package-badge">Most Popular</div>
+                        <div class="package-header">
+                            <div class="package-icon gold">🥇</div>
+                            <h3 class="package-name">Gold Package</h3>
+                            <p class="package-description">Enhanced celebration with balloons and cake toppers</p>
+                        </div>
+                        <div class="package-items">
+                            <div class="package-item">
+                                <span class="item-icon">🎉</span>
+                                <span class="item-name">Party Poppers</span>
+                                <span class="fixed-quantity">2</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🕯️</span>
+                                <span class="item-name">Sparkling Candles</span>
+                                <span class="fixed-quantity">2</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎩</span>
+                                <span class="item-name">Party Hat</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎂</span>
+                                <span class="item-name">Cake Topper</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎈</span>
+                                <span class="item-name">Balloons</span>
+                                <span class="fixed-quantity">10</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🧻</span>
+                                <span class="item-name">Tissue Set</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                        </div>
+                        <button class="package-select-btn">
+                            Select Gold Package
+                        </button>
+                    </div>
+
+                    <!-- Platinum Package -->
+                    <div class="package-card" data-package="platinum" onclick="selectPackage('platinum')">
+                        <div class="package-header">
+                            <div class="package-icon platinum">💎</div>
+                            <h3 class="package-name">Platinum Package</h3>
+                            <p class="package-description">Ultimate celebration with premium decorations and setup</p>
+                        </div>
+                        <div class="package-items">
+                            <div class="package-item">
+                                <span class="item-icon">🎉</span>
+                                <span class="item-name">Party Poppers</span>
+                                <span class="fixed-quantity">3</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🕯️</span>
+                                <span class="item-name">Sparkling Candles</span>
+                                <span class="fixed-quantity">3</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎩</span>
+                                <span class="item-name">Party Hats</span>
+                                <span class="fixed-quantity">2</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎂</span>
+                                <span class="item-name">Cake Toppers (Big + Small)</span>
+                                <span class="fixed-quantity">3</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎈</span>
+                                <span class="item-name">Balloons</span>
+                                <span class="fixed-quantity">20</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎭</span>
+                                <span class="item-name">Background Curtains</span>
+                                <span class="fixed-quantity">2</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎀</span>
+                                <span class="item-name">Ribbon Pack</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🧻</span>
+                                <span class="item-name">Tissue Set</span>
+                                <span class="fixed-quantity">1</span>
+                            </div>
+                        </div>
+                        <button class="package-select-btn">
+                            Select Platinum Package
+                        </button>
+                    </div>
+
+                    <!-- Custom Package -->
+                    <div class="package-card" data-package="custom" onclick="selectPackage('custom')">
+                        <div class="package-header">
+                            <div class="package-icon custom">🎨</div>
+                            <h3 class="package-name">Custom Package</h3>
+                            <p class="package-description">Build your own celebration set with customizable quantities</p>
+                        </div>
+                        <div class="package-items" id="customPackageItems">
+                            <div class="package-item">
+                                <span class="item-icon">🎉</span>
+                                <span class="item-name">Party Poppers</span>
+                                <div class="quantity-control">
+                                    <button type="button" onclick="adjustQuantity('custom', 'poppers', -1)">−</button>
+                                    <span id="custom-poppers-qty">0</span>
+                                    <button type="button" onclick="adjustQuantity('custom', 'poppers', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🕯️</span>
+                                <span class="item-name">Sparkling Candles</span>
+                                <div class="quantity-control">
+                                    <button type="button" onclick="adjustQuantity('custom', 'candles', -1)">−</button>
+                                    <span id="custom-candles-qty">0</span>
+                                    <button type="button" onclick="adjustQuantity('custom', 'candles', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎩</span>
+                                <span class="item-name">Party Hats</span>
+                                <div class="quantity-control">
+                                    <button type="button" onclick="adjustQuantity('custom', 'hats', -1)">−</button>
+                                    <span id="custom-hats-qty">0</span>
+                                    <button type="button" onclick="adjustQuantity('custom', 'hats', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎂</span>
+                                <span class="item-name">Cake Toppers</span>
+                                <div class="quantity-control">
+                                    <button type="button" onclick="adjustQuantity('custom', 'toppers', -1)">−</button>
+                                    <span id="custom-toppers-qty">0</span>
+                                    <button type="button" onclick="adjustQuantity('custom', 'toppers', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎈</span>
+                                <span class="item-name">Balloons</span>
+                                <div class="quantity-control">
+                                    <button type="button" onclick="adjustQuantity('custom', 'balloons', -1)">−</button>
+                                    <span id="custom-balloons-qty">0</span>
+                                    <button type="button" onclick="adjustQuantity('custom', 'balloons', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎭</span>
+                                <span class="item-name">Background Curtains</span>
+                                <div class="quantity-control">
+                                    <button type="button" onclick="adjustQuantity('custom', 'curtains', -1)">−</button>
+                                    <span id="custom-curtains-qty">0</span>
+                                    <button type="button" onclick="adjustQuantity('custom', 'curtains', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🎀</span>
+                                <span class="item-name">Ribbon Pack</span>
+                                <div class="quantity-control">
+                                    <button type="button" onclick="adjustQuantity('custom', 'ribbons', -1)">−</button>
+                                    <span id="custom-ribbons-qty">0</span>
+                                    <button type="button" onclick="adjustQuantity('custom', 'ribbons', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="package-item">
+                                <span class="item-icon">🧻</span>
+                                <span class="item-name">Tissue Set</span>
+                                <div class="quantity-control">
+                                    <button type="button" onclick="adjustQuantity('custom', 'tissues', -1)">−</button>
+                                    <span id="custom-tissues-qty">0</span>
+                                    <button type="button" onclick="adjustQuantity('custom', 'tissues', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="package-select-btn">
+                            Select Custom Package
+                        </button>
+                    </div>
+                </div>
+
+                <div class="step-navigation">
+                    <button class="btn-back" onclick="previousStep(1)">← Back</button>
+                    <button class="btn-next" onclick="nextStep(3)" id="step2NextBtn" disabled>Continue to Cakes →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Cake Selection -->
+            <div class="step-content" id="step3">
+                <div class="step-header">
+                    <h1 class="step-title">🍰 Choose Your Perfect Cake</h1>
+                    <p class="step-subtitle">Select from our premium cake collection or skip to party essentials only</p>
+                </div>
+
+                <div class="cake-skip-option">
+                    <button class="skip-cake-btn" onclick="skipCake()">
+                        <span>🎈</span>
+                        Skip cake - Party essentials only
+                    </button>
+                </div>
+
+                <div class="cakes-grid">
+                    <div class="cake-card" data-cake="chocolate" onclick="selectCake('chocolate')">
+                        <div class="cake-image">
+                            <img src="https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Rich Chocolate Cake" loading="lazy">
+                            <div class="cake-overlay">
+                                <div class="cake-price">₹899</div>
+                            </div>
+                        </div>
+                        <div class="cake-content">
+                            <h3 class="cake-name">Rich Chocolate Delight</h3>
+                            <p class="cake-type">Premium Chocolate Cake</p>
+                            <p class="cake-description">Decadent layers of moist chocolate sponge with rich chocolate ganache and premium cocoa finish</p>
+                            <div class="cake-features">
+                                <span class="cake-feature">🍫 Dark Chocolate</span>
+                                <span class="cake-feature">🥛 Creamy Layers</span>
+                                <span class="cake-feature">⭐ Most Popular</span>
+                            </div>
+                            <div class="cake-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">(4.9) 150+ reviews</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cake-card" data-cake="strawberry" onclick="selectCake('strawberry')">
+                        <div class="cake-image">
+                            <img src="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Strawberry Cake" loading="lazy">
+                            <div class="cake-overlay">
+                                <div class="cake-price">₹799</div>
+                            </div>
+                        </div>
+                        <div class="cake-content">
+                            <h3 class="cake-name">Fresh Strawberry Bliss</h3>
+                            <p class="cake-type">Premium Fruit Cake</p>
+                            <p class="cake-description">Light vanilla sponge layered with fresh strawberries, whipped cream, and strawberry compote</p>
+                            <div class="cake-features">
+                                <span class="cake-feature">🍓 Fresh Berries</span>
+                                <span class="cake-feature">🥛 Whipped Cream</span>
+                                <span class="cake-feature">🌟 Light & Fresh</span>
+                            </div>
+                            <div class="cake-rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-text">(4.7) 120+ reviews</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cake-card" data-cake="vanilla" onclick="selectCake('vanilla')">
+                        <div class="cake-image">
+                            <img src="https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Classic Vanilla Cake" loading="lazy">
+                            <div class="cake-overlay">
+                                <div class="cake-price">₹699</div>
+                            </div>
+                        </div>
+                        <div class="cake-content">
+                            <h3 class="cake-name">Classic Vanilla Dream</h3>
+                            <p class="cake-type">Traditional Vanilla Cake</p>
+                            <p class="cake-description">Timeless vanilla sponge with smooth buttercream frosting and elegant decorative touches</p>
+                            <div class="cake-features">
+                                <span class="cake-feature">🍦 Pure Vanilla</span>
+                                <span class="cake-feature">🧁 Buttercream</span>
+                                <span class="cake-feature">👨‍👩‍👧‍👦 Family Favorite</span>
+                            </div>
+                            <div class="cake-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">(4.8) 200+ reviews</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cake-card" data-cake="redvelvet" onclick="selectCake('redvelvet')">
+                        <div class="cake-image">
+                            <img src="https://images.pexels.com/photos/1070850/pexels-photo-1070850.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Red Velvet Cake" loading="lazy">
+                            <div class="cake-overlay">
+                                <div class="cake-price">₹999</div>
+                            </div>
+                        </div>
+                        <div class="cake-content">
+                            <h3 class="cake-name">Luxurious Red Velvet</h3>
+                            <p class="cake-type">Premium Red Velvet Cake</p>
+                            <p class="cake-description">Velvety smooth red cocoa cake with cream cheese frosting and elegant white chocolate drizzle</p>
+                            <div class="cake-features">
+                                <span class="cake-feature">❤️ Red Velvet</span>
+                                <span class="cake-feature">🧀 Cream Cheese</span>
+                                <span class="cake-feature">💎 Luxury Choice</span>
+                            </div>
+                            <div class="cake-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">(4.9) 95+ reviews</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cake-card" data-cake="blackforest" onclick="selectCake('blackforest')">
+                        <div class="cake-image">
+                            <img src="https://images.pexels.com/photos/2531546/pexels-photo-2531546.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Black Forest Cake" loading="lazy">
+                            <div class="cake-overlay">
+                                <div class="cake-price">₹1099</div>
+                            </div>
+                        </div>
+                        <div class="cake-content">
+                            <h3 class="cake-name">Black Forest Special</h3>
+                            <p class="cake-type">German Black Forest Cake</p>
+                            <p class="cake-description">Traditional chocolate sponge with cherry filling, whipped cream layers, and chocolate shavings</p>
+                            <div class="cake-features">
+                                <span class="cake-feature">🍒 Cherry Filling</span>
+                                <span class="cake-feature">🍫 Chocolate Base</span>
+                                <span class="cake-feature">🇩🇪 Traditional</span>
+                            </div>
+                            <div class="cake-rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-text">(4.6) 80+ reviews</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cake-card" data-cake="butterscotch" onclick="selectCake('butterscotch')">
+                        <div class="cake-image">
+                            <img src="https://images.pexels.com/photos/3992303/pexels-photo-3992303.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Butterscotch Cake" loading="lazy">
+                            <div class="cake-overlay">
+                                <div class="cake-price">₹849</div>
+                            </div>
+                        </div>
+                        <div class="cake-content">
+                            <h3 class="cake-name">Golden Butterscotch</h3>
+                            <p class="cake-type">Premium Butterscotch Cake</p>
+                            <p class="cake-description">Rich butterscotch flavored sponge with caramel frosting and crunchy butterscotch chips</p>
+                            <div class="cake-features">
+                                <span class="cake-feature">🍯 Butterscotch</span>
+                                <span class="cake-feature">🍮 Caramel Cream</span>
+                                <span class="cake-feature">✨ Crunchy Chips</span>
+                            </div>
+                            <div class="cake-rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-text">(4.5) 110+ reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-navigation">
+                    <button class="btn-back" onclick="previousStep(2)">← Back to Packages</button>
+                    <button class="btn-next" onclick="nextStep(4)" id="step3NextBtn">Continue to Delivery →</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Delivery Details -->
+            <div class="step-content" id="step4">
+                <div class="step-header">
+                    <h1 class="step-title">🚚 Delivery & Timing Details</h1>
+                    <p class="step-subtitle">Let us know when and where to deliver your celebration</p>
+                </div>
+                
+                <div class="step-form">
+                    <div class="form-group">
+                        <label for="deliveryTime">Preferred Delivery Time</label>
+                        <select id="deliveryTime" required>
+                            <option value="">Select delivery time</option>
+                            <option value="Morning (9 AM - 12 PM)">🌅 Morning (9 AM - 12 PM)</option>
+                            <option value="Afternoon (12 PM - 4 PM)">☀️ Afternoon (12 PM - 4 PM)</option>
+                            <option value="Evening (4 PM - 8 PM)">🌆 Evening (4 PM - 8 PM)</option>
+                            <option value="Night (8 PM - 11 PM)">🌙 Night (8 PM - 11 PM)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deliveryInstructions">Special Delivery Instructions (Optional)</label>
+                        <textarea id="deliveryInstructions" rows="3" placeholder="Any specific instructions for our delivery team..."></textarea>
+                    </div>
+
+                    <div class="delivery-options">
+                        <h3 class="delivery-options-title">📦 Delivery Options</h3>
+                        <div class="delivery-cards">
+                            <div class="delivery-card" onclick="selectDeliveryOption('standard')">
+                                <div class="delivery-icon">🚚</div>
+                                <h4>Standard Delivery</h4>
+                                <p>Delivered on your chosen date</p>
+                                <span class="delivery-price">Free</span>
+                            </div>
+                            <div class="delivery-card" onclick="selectDeliveryOption('surprise')">
+                                <div class="delivery-icon">🎁</div>
+                                <h4>Surprise Setup</h4>
+                                <p>We'll set up everything for you</p>
+                                <span class="delivery-price">₹199</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-navigation">
+                    <button class="btn-back" onclick="previousStep(3)">← Back to Cakes</button>
+                    <button class="btn-next" onclick="nextStep(5)" id="step4NextBtn" disabled>Review Order →</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Order Summary -->
+            <div class="step-content" id="step5">
+                <div class="step-header">
+                    <h1 class="step-title">📋 Order Summary</h1>
+                    <p class="step-subtitle">Review your celebration details before confirming your order</p>
+                </div>
+                
+                <div class="summary-container">
+                    <div class="summary-section">
+                        <h3 class="summary-section-title">👤 Personal Details</h3>
+                        <div class="summary-card" id="personalSummary">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <h3 class="summary-section-title">📦 Package Selection</h3>
+                        <div class="summary-card" id="packageSummary">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <h3 class="summary-section-title">🍰 Cake Selection</h3>
+                        <div class="summary-card" id="cakeSummary">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <h3 class="summary-section-title">🚚 Delivery Information</h3>
+                        <div class="summary-card" id="deliverySummary">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-actions">
+                    <div class="order-total">
+                        <div class="total-label">Estimated Total:</div>
+                        <div class="total-amount" id="totalAmount">Contact for pricing</div>
+                    </div>
+                    <div class="step-navigation">
+                        <button class="btn-back" onclick="previousStep(4)">← Back to Delivery</button>
+                        <button class="btn-submit" onclick="sendOrderToWhatsApp()">
+                            🎉 Confirm & Send Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Success Message -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-content">
+            <div class="success-icon">🎉</div>
+            <h2>Order Sent Successfully!</h2>
+            <p>Your celebration order has been sent to our WhatsApp. We'll get back to you shortly with pricing and confirmation details.</p>
+            <div class="success-actions">
+                <a href="/" class="btn-primary">Back to Home</a>
+                <button class="btn-secondary" onclick="startNewOrder()">Plan Another Celebration</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Order Management System JavaScript
+
+// Package definitions with fixed quantities
+const packageDefinitions = {
+    silver: {
+        name: 'Silver Package',
+        items: {
+            poppers: { name: 'Party Poppers', quantity: 1 },
+            candles: { name: 'Sparkling Candles', quantity: 1 },
+            hats: { name: 'Party Hat', quantity: 1 },
+            tissues: { name: 'Tissue Set', quantity: 1 }
+        }
+    },
+    gold: {
+        name: 'Gold Package',
+        items: {
+            poppers: { name: 'Party Poppers', quantity: 2 },
+            candles: { name: 'Sparkling Candles', quantity: 2 },
+            hats: { name: 'Party Hat', quantity: 1 },
+            toppers: { name: 'Cake Topper', quantity: 1 },
+            balloons: { name: 'Balloons', quantity: 10 },
+            tissues: { name: 'Tissue Set', quantity: 1 }
+        }
+    },
+    platinum: {
+        name: 'Platinum Package',
+        items: {
+            poppers: { name: 'Party Poppers', quantity: 3 },
+            candles: { name: 'Sparkling Candles', quantity: 3 },
+            hats: { name: 'Party Hats', quantity: 2 },
+            toppers: { name: 'Cake Toppers (Big + Small)', quantity: 3 },
+            balloons: { name: 'Balloons', quantity: 20 },
+            curtains: { name: 'Background Curtains', quantity: 2 },
+            ribbons: { name: 'Ribbon Pack', quantity: 1 },
+            tissues: { name: 'Tissue Set', quantity: 1 }
+        }
+    }
+};
+
+// Global state management
+let orderData = {
+    personal: {},
+    package: {},
+    cake: null,
+    delivery: {},
+    currentStep: 1
+};
+
+// Initialize the order system
+document.addEventListener('DOMContentLoaded', function() {
+    initializeOrderSystem();
+    setupFormValidation();
+    setMinDateForOccasion();
+});
+
+function initializeOrderSystem() {
+    // Setup form listeners for step 1
+    const step1Inputs = ['celebrantName', 'celebrantPhone', 'occasionType', 'occasionDate', 'occasionLocation'];
+    step1Inputs.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener('input', validateStep1);
+            element.addEventListener('change', validateStep1);
+        }
+    });
+
+    // Setup delivery form listeners
+    const deliveryTime = document.getElementById('deliveryTime');
+    if (deliveryTime) {
+        deliveryTime.addEventListener('change', validateStep4);
+    }
+}
+
+function setMinDateForOccasion() {
+    const dateInput = document.getElementById('occasionDate');
+    if (dateInput) {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const minDate = tomorrow.toISOString().split('T')[0];
+        dateInput.setAttribute('min', minDate);
+    }
+}
+
+function validateStep1() {
+    const name = document.getElementById('celebrantName').value.trim();
+    const phone = document.getElementById('celebrantPhone').value.trim();
+    const occasion = document.getElementById('occasionType').value;
+    const date = document.getElementById('occasionDate').value;
+    const location = document.getElementById('occasionLocation').value.trim();
+
+    const isValid = name && phone && occasion && date && location && phone.length >= 10;
+    const nextBtn = document.getElementById('step1Next');
+    
+    if (nextBtn) {
+        nextBtn.disabled = !isValid;
+        nextBtn.style.opacity = isValid ? '1' : '0.5';
+    }
+
+    return isValid;
+}
+
+function validateStep4() {
+    const deliveryTime = document.getElementById('deliveryTime').value;
+    const hasDeliveryOption = orderData.delivery.option !== undefined;
+    
+    const isValid = deliveryTime && hasDeliveryOption;
+    const nextBtn = document.getElementById('step4NextBtn');
+    
+    if (nextBtn) {
+        nextBtn.disabled = !isValid;
+        nextBtn.style.opacity = isValid ? '1' : '0.5';
+    }
+
+    return isValid;
+}
+
+function nextStep(stepNumber) {
+    // Save current step data
+    if (orderData.currentStep === 1) {
+        saveStep1Data();
+    }
+
+    // Hide current step
+    const currentStepElement = document.getElementById(`step${orderData.currentStep}`);
+    if (currentStepElement) {
+        currentStepElement.classList.remove('active');
+    }
+
+    // Show next step
+    const nextStepElement = document.getElementById(`step${stepNumber}`);
+    if (nextStepElement) {
+        nextStepElement.classList.add('active');
+    }
+
+    // Update progress bar
+    updateProgressBar(stepNumber);
+    
+    orderData.currentStep = stepNumber;
+
+    // Special handling for step 5 (summary)
+    if (stepNumber === 5) {
+        populateOrderSummary();
+    }
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function previousStep(stepNumber) {
+    // Hide current step
+    const currentStepElement = document.getElementById(`step${orderData.currentStep}`);
+    if (currentStepElement) {
+        currentStepElement.classList.remove('active');
+    }
+
+    // Show previous step
+    const prevStepElement = document.getElementById(`step${stepNumber}`);
+    if (prevStepElement) {
+        prevStepElement.classList.add('active');
+    }
+
+    // Update progress bar
+    updateProgressBar(stepNumber);
+    
+    orderData.currentStep = stepNumber;
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProgressBar(activeStep) {
+    // Reset all steps
+    for (let i = 1; i <= 5; i++) {
+        const stepElement = document.getElementById(`progress${i}`);
+        const connectorElement = document.getElementById(`connector${i}`);
+        
+        if (stepElement) {
+            stepElement.classList.remove('active', 'completed');
+            if (i < activeStep) {
+                stepElement.classList.add('completed');
+            } else if (i === activeStep) {
+                stepElement.classList.add('active');
+            }
+        }
+        
+        if (connectorElement) {
+            connectorElement.classList.remove('active');
+            if (i < activeStep) {
+                connectorElement.classList.add('active');
+            }
+        }
+    }
+}
+
+function saveStep1Data() {
+    orderData.personal = {
+        name: document.getElementById('celebrantName').value.trim(),
+        phone: document.getElementById('celebrantPhone').value.trim(),
+        occasion: document.getElementById('occasionType').value,
+        date: document.getElementById('occasionDate').value,
+        location: document.getElementById('occasionLocation').value.trim(),
+        notes: document.getElementById('specialNotes').value.trim()
+    };
+}
+
+function adjustQuantity(packageType, item, change) {
+    // Only allow quantity adjustment for custom package
+    if (packageType !== 'custom') return;
+    
+    const qtyElement = document.getElementById(`${packageType}-${item}-qty`);
+    if (!qtyElement) return;
+
+    let currentQty = parseInt(qtyElement.textContent);
+    let newQty = Math.max(0, currentQty + change);
+    qtyElement.textContent = newQty;
+
+    // Update the custom package validation
+    validateCustomPackage();
+}
+
+function validateCustomPackage() {
+    const customCard = document.querySelector('[data-package="custom"]');
+    if (!customCard || !customCard.classList.contains('selected')) return;
+
+    // Check if at least one item is selected
+    const quantities = ['poppers', 'candles', 'hats', 'toppers', 'balloons', 'curtains', 'ribbons', 'tissues'];
+    const hasItems = quantities.some(item => {
+        const qtyElement = document.getElementById(`custom-${item}-qty`);
+        return qtyElement && parseInt(qtyElement.textContent) > 0;
+    });
+
+    const nextBtn = document.getElementById('step2NextBtn');
+    if (nextBtn) {
+        nextBtn.disabled = !hasItems;
+        nextBtn.style.opacity = hasItems ? '1' : '0.5';
+    }
+}
+
+function selectPackage(packageType) {
+    // Remove selection from other packages
+    document.querySelectorAll('.package-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+
+    // Add selection to clicked package
+    const selectedCard = document.querySelector(`[data-package="${packageType}"]`);
+    if (selectedCard) {
+        selectedCard.classList.add('selected');
+    }
+
+    // Save package data
+    if (packageType === 'custom') {
+        // For custom package, collect current quantities
+        const items = {};
+        const quantities = ['poppers', 'candles', 'hats', 'toppers', 'balloons', 'curtains', 'ribbons', 'tissues'];
+        
+        quantities.forEach(item => {
+            const qtyElement = document.getElementById(`custom-${item}-qty`);
+            if (qtyElement) {
+                const qty = parseInt(qtyElement.textContent);
+                if (qty > 0) {
+                    const itemNames = {
+                        poppers: 'Party Poppers',
+                        candles: 'Sparkling Candles',
+                        hats: 'Party Hats',
+                        toppers: 'Cake Toppers',
+                        balloons: 'Balloons',
+                        curtains: 'Background Curtains',
+                        ribbons: 'Ribbon Pack',
+                        tissues: 'Tissue Set'
+                    };
+                    items[item] = { name: itemNames[item], quantity: qty };
+                }
+            }
+        });
+
+        orderData.package = {
+            type: 'custom',
+            name: 'Custom Package',
+            items: items
+        };
+
+        validateCustomPackage();
+    } else {
+        // For fixed packages, use predefined quantities
+        orderData.package = {
+            type: packageType,
+            name: packageDefinitions[packageType].name,
+            items: packageDefinitions[packageType].items
+        };
+
+        // Enable next button immediately for fixed packages
+        const nextBtn = document.getElementById('step2NextBtn');
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.style.opacity = '1';
+        }
+    }
+}
+
+function selectCake(cakeType) {
+    // Remove selection from other cakes
+    document.querySelectorAll('.cake-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+
+    // Remove skip cake selection
+    const skipBtn = document.querySelector('.skip-cake-btn');
+    if (skipBtn) {
+        skipBtn.classList.remove('selected');
+    }
+
+    // Add selection to clicked cake
+    const selectedCard = document.querySelector(`[data-cake="${cakeType}"]`);
+    if (selectedCard) {
+        selectedCard.classList.add('selected');
+    }
+
+    // Get cake price from the overlay
+    const priceElement = selectedCard.querySelector('.cake-price');
+    const price = priceElement ? priceElement.textContent : '';
+
+    // Save cake data
+    orderData.cake = {
+        type: cakeType,
+        name: selectedCard.querySelector('.cake-name').textContent,
+        description: selectedCard.querySelector('.cake-description').textContent,
+        price: price
+    };
+}
+
+function skipCake() {
+    // Remove all cake selections
+    document.querySelectorAll('.cake-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+
+    // Add selection to skip button
+    const skipBtn = document.querySelector('.skip-cake-btn');
+    if (skipBtn) {
+        skipBtn.classList.add('selected');
+    }
+
+    // Mark as skipped
+    orderData.cake = { skipped: true };
+}
+
+function selectDeliveryOption(option) {
+    // Remove selection from other options
+    document.querySelectorAll('.delivery-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+
+    // Add selection to clicked option
+    const selectedCard = event.target.closest('.delivery-card');
+    if (selectedCard) {
+        selectedCard.classList.add('selected');
+    }
+
+    // Save delivery option
+    const optionNames = {
+        'standard': 'Standard Delivery',
+        'surprise': 'Surprise Setup'
+    };
+
+    orderData.delivery.option = option;
+    orderData.delivery.optionName = optionNames[option];
+
+    // Validate step 4
+    validateStep4();
+}
+
+function populateOrderSummary() {
+    // Personal details summary
+    const personalSummary = document.getElementById('personalSummary');
+    if (personalSummary && orderData.personal) {
+        personalSummary.innerHTML = `
+            <div class="summary-item">
+                <span class="summary-label">Name:</span>
+                <span class="summary-value">${orderData.personal.name}</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Phone:</span>
+                <span class="summary-value">${orderData.personal.phone}</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Occasion:</span>
+                <span class="summary-value">${orderData.personal.occasion}</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Date:</span>
+                <span class="summary-value">${new Date(orderData.personal.date).toLocaleDateString('en-IN', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                })}</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Location:</span>
+                <span class="summary-value">${orderData.personal.location}</span>
+            </div>
+            ${orderData.personal.notes ? `
+                <div class="summary-item">
+                    <span class="summary-label">Notes:</span>
+                    <span class="summary-value">${orderData.personal.notes}</span>
+                </div>
+            ` : ''}
+        `;
+    }
+
+    // Package summary
+    const packageSummary = document.getElementById('packageSummary');
+    if (packageSummary && orderData.package) {
+        let itemsHtml = '';
+        if (orderData.package.items) {
+            Object.entries(orderData.package.items).forEach(([key, item]) => {
+                itemsHtml += `
+                    <div class="summary-package-item">
+                        <span>${item.name}</span>
+                        <span>×${item.quantity}</span>
+                    </div>
+                `;
+            });
+        }
+        
+        packageSummary.innerHTML = `
+            <div class="summary-item">
+                <span class="summary-label">Package Type:</span>
+                <span class="summary-value">${orderData.package.name}</span>
+            </div>
+            ${itemsHtml ? `
+                <div class="summary-item">
+                    <span class="summary-label">Items Included:</span>
+                    <div class="summary-package-items">${itemsHtml}</div>
+                </div>
+            ` : ''}
+        `;
+    }
+
+    // Cake summary
+    const cakeSummary = document.getElementById('cakeSummary');
+    if (cakeSummary) {
+        if (orderData.cake && orderData.cake.skipped) {
+            cakeSummary.innerHTML = `
+                <div class="summary-item">
+                    <span class="summary-label">Cake Selection:</span>
+                    <span class="summary-value">No cake - Party essentials only</span>
+                </div>
+            `;
+        } else if (orderData.cake) {
+            cakeSummary.innerHTML = `
+                <div class="summary-item">
+                    <span class="summary-label">Cake:</span>
+                    <span class="summary-value">${orderData.cake.name}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Description:</span>
+                    <span class="summary-value">${orderData.cake.description}</span>
+                </div>
+                ${orderData.cake.price ? `
+                    <div class="summary-item">
+                        <span class="summary-label">Price:</span>
+                        <span class="summary-value">${orderData.cake.price}</span>
+                    </div>
+                ` : ''}
+            `;
+        } else {
+            cakeSummary.innerHTML = `
+                <div class="summary-item">
+                    <span class="summary-label">Cake Selection:</span>
+                    <span class="summary-value">No cake selected</span>
+                </div>
+            `;
+        }
+    }
+
+    // Delivery summary
+    const deliverySummary = document.getElementById('deliverySummary');
+    if (deliverySummary) {
+        const deliveryTime = document.getElementById('deliveryTime').value;
+        const deliveryInstructions = document.getElementById('deliveryInstructions').value;
+        
+        orderData.delivery.time = deliveryTime;
+        orderData.delivery.instructions = deliveryInstructions;
+
+        deliverySummary.innerHTML = `
+            <div class="summary-item">
+                <span class="summary-label">Delivery Time:</span>
+                <span class="summary-value">${deliveryTime}</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Delivery Option:</span>
+                <span class="summary-value">${orderData.delivery.optionName}</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Delivery Address:</span>
+                <span class="summary-value">${orderData.personal.location}</span>
+            </div>
+            ${deliveryInstructions ? `
+                <div class="summary-item">
+                    <span class="summary-label">Instructions:</span>
+                    <span class="summary-value">${deliveryInstructions}</span>
+                </div>
+            ` : ''}
+        `;
+    }
+}
+
+function sendOrderToWhatsApp() {
+    let message = `🎉 *WECAE CELEBRATION ORDER* 🎉\n\n`;
+    
+    // Personal details
+    message += `👤 *PERSONAL DETAILS*\n`;
+    message += `Name: ${orderData.personal.name}\n`;
+    message += `Phone: ${orderData.personal.phone}\n`;
+    message += `Occasion: ${orderData.personal.occasion}\n`;
+    message += `Date: ${new Date(orderData.personal.date).toLocaleDateString('en-IN', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    })}\n`;
+    message += `Location: ${orderData.personal.location}\n`;
+    if (orderData.personal.notes) {
+        message += `Notes: ${orderData.personal.notes}\n`;
+    }
+    message += `\n`;
+
+    // Package details
+    if (orderData.package) {
+        message += `📦 *PACKAGE DETAILS*\n`;
+        message += `Package: ${orderData.package.name}\n`;
+        if (orderData.package.items) {
+            Object.entries(orderData.package.items).forEach(([key, item]) => {
+                message += `• ${item.name}: ${item.quantity}\n`;
+            });
+        }
+        message += `\n`;
+    }
+
+    // Cake details
+    message += `🍰 *CAKE SELECTION*\n`;
+    if (orderData.cake && orderData.cake.skipped) {
+        message += `No cake - Party essentials only\n`;
+    } else if (orderData.cake) {
+        message += `${orderData.cake.name}`;
+        if (orderData.cake.price) {
+            message += ` - ${orderData.cake.price}`;
+        }
+        message += `\n`;
+    } else {
+        message += `No cake selected\n`;
+    }
+    message += `\n`;
+
+    // Delivery details
+    message += `🚚 *DELIVERY DETAILS*\n`;
+    message += `Time: ${orderData.delivery.time}\n`;
+    message += `Option: ${orderData.delivery.optionName}\n`;
+    message += `Address: ${orderData.personal.location}\n`;
+    if (orderData.delivery.instructions) {
+        message += `Instructions: ${orderData.delivery.instructions}\n`;
+    }
+    message += `\n`;
+
+    message += `Please provide pricing and confirm availability! 🎊`;
+
+    const whatsappUrl = `https://wa.me/7511169196?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+
+    // Show success overlay
+    const successOverlay = document.getElementById('successOverlay');
+    if (successOverlay) {
+        successOverlay.classList.add('active');
+        successOverlay.style.display = 'flex';
+    }
+}
+
+function startNewOrder() {
+    // Reset order data
+    orderData = {
+        personal: {},
+        package: {},
+        cake: null,
+        delivery: {},
+        currentStep: 1
+    };
+
+    // Hide success overlay
+    const successOverlay = document.getElementById('successOverlay');
+    if (successOverlay) {
+        successOverlay.classList.remove('active');
+        successOverlay.style.display = 'none';
+    }
+
+    // Reset form
+    document.querySelectorAll('input, select, textarea').forEach(input => {
+        input.value = '';
+    });
+
+    // Reset custom package quantities
+    const quantities = ['poppers', 'candles', 'hats', 'toppers', 'balloons', 'curtains', 'ribbons', 'tissues'];
+    quantities.forEach(item => {
+        const qtyElement = document.getElementById(`custom-${item}-qty`);
+        if (qtyElement) {
+            qtyElement.textContent = '0';
+        }
+    });
+
+    // Remove all selections
+    document.querySelectorAll('.package-card, .cake-card, .delivery-card, .skip-cake-btn').forEach(card => {
+        card.classList.remove('selected');
+    });
+
+    // Go back to step 1
+    document.querySelectorAll('.step-content').forEach(step => {
+        step.classList.remove('active');
+    });
+    document.getElementById('step1').classList.add('active');
+
+    // Reset progress bar
+    updateProgressBar(1);
+
+    // Disable next buttons
+    document.getElementById('step1Next').disabled = true;
+    document.getElementById('step2NextBtn').disabled = true;
+    document.getElementById('step4NextBtn').disabled = true;
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Setup form validation
+function setupFormValidation() {
+    validateStep1();
+}
+
+    </script>
+</body>
+</html>

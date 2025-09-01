@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wecae - Your Special Moments, Our Responsibility</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">🎂</div>
+                <span class="logo-text">Wecae</span>
+            </a>
+            <nav class="desktop-nav">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <a href="order.html" class="cta-button">
+                🎂 Start Celebrating
+            </a>
+            <button class="mobile-menu-button" onclick="toggleMobileMenu()">
+                ☰
+            </button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#services" class="mobile-nav-link">Services</a>
+            <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <a href="order.html" class="mobile-nav-link mobile-cta">Start Celebrating</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="floating-element">🎈</div>
+        <div class="floating-element">🎂</div>
+        <div class="floating-element">🎉</div>
+        <div class="floating-element">🎁</div>
+        <div class="floating-element">✨</div>
+        <div class="floating-element">🎊</div>
+        
+        <div class="container">
+            <div class="hero-badge">
+                <span>🎉</span>
+                <span>Celebration Made Simple</span>
+            </div>
+
+            <h1 class="hero-title">
+                Your Special Moments,<br>
+                <span class="hero-highlight">Our Responsibility</span>
+            </h1>
+
+            <p class="hero-description">
+                Wecae makes birthdays, anniversaries, and milestones effortless with premium cake delivery, curated party essentials, and personalized surprise packages. We carry emotion.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="order.html" class="btn-primary">
+                    <span>🎂</span>
+                    Start Your Celebration
+                </a>
+                <a href="#services" class="btn-secondary">Explore Services →</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Happy Celebrations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Customer Support</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Same Day</div>
+                    <div class="stat-label">Delivery Available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span>🛍️</span>
+                    <span>Our Services</span>
+                </div>
+                <h2 class="section-title">Everything You Need to Celebrate</h2>
+                <p class="section-description">From premium cakes to complete party setups, we've got your celebrations covered with professional service and attention to detail</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🍰</div>
+                    <h3 class="feature-title">Premium Cake Delivery</h3>
+                    <p class="feature-description">Freshly baked cakes, artisan pastries, and gourmet desserts from our trusted partner bakers. Choose from classic flavors or custom designs.</p>
+                    <div class="feature-highlights">
+                        <span class="highlight-item">✓ Fresh daily baking</span>
+                        <span class="highlight-item">✓ Custom designs available</span>
+                        <span class="highlight-item">✓ Same-day delivery</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎈</div>
+                    <h3 class="feature-title">Complete Party Essentials</h3>
+                    <p class="feature-description">Everything you need for the perfect celebration - balloons, decorations, candles, poppers, and themed accessories.</p>
+                    <div class="feature-highlights">
+                        <span class="highlight-item">✓ Curated party packages</span>
+                        <span class="highlight-item">✓ Premium quality items</span>
+                        <span class="highlight-item">✓ Customizable quantities</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3 class="feature-title">Personalized Surprises</h3>
+                    <p class="feature-description">Thoughtfully curated surprise packages and custom celebration setups tailored to make every moment uniquely special.</p>
+                    <div class="feature-highlights">
+                        <span class="highlight-item">✓ Personalized touch</span>
+                        <span class="highlight-item">✓ Surprise coordination</span>
+                        <span class="highlight-item">✓ Memory creation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="page-section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span>⚡</span>
+                    <span>How It Works</span>
+                </div>
+                <h2 class="section-title">5 Simple Steps to Perfect Celebrations</h2>
+                <p class="section-description">From planning to delivery, our streamlined process ensures every celebration is flawless and stress-free</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Tell Us About You</h3>
+                    <p class="step-description">Share your celebration details and preferences through our intuitive booking interface.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Choose Your Package</h3>
+                    <p class="step-description">Select from our curated packages and customize quantities to match your celebration needs perfectly.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Select Your Cake</h3>
+                    <p class="step-description">Browse our premium cake collection with detailed descriptions and pick your perfect flavor.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Delivery Details</h3>
+                    <p class="step-description">Provide delivery information and any special instructions for your celebration setup.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Celebrate!</h3>
+                    <p class="step-description">We handle everything from preparation to delivery. You focus on making memories!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span>💝</span>
+                    <span>About Wecae</span>
+                </div>
+                <h2 class="section-title">We Carry Emotion</h2>
+                <p class="section-description">Your trusted partner in making every celebration memorable and stress-free</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="about-heading">Who We Are</h3>
+                    <p class="about-paragraph">
+                        Wecae is a premier celebration management platform designed for people who value special moments but struggle with the time and effort required to organize them perfectly.
+                    </p>
+                    <p class="about-paragraph">
+                        We understand that busy schedules shouldn't mean missing out on celebrating the people you love. That's why we've created a seamless solution that handles everything from planning to delivery.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <span class="about-feature-icon">🏆</span>
+                            <span>Premium Quality Assured</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="about-feature-icon">⚡</span>
+                            <span>Lightning Fast Service</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="about-feature-icon">💝</span>
+                            <span>Personal Touch Guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">🎊</div>
+            </div>
+
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <h3><span class="mission-icon">🎯</span> Our Mission</h3>
+                    <p>
+                        To make every celebration memorable and stress-free by providing comprehensive celebration management services that handle all the details, so you can focus on what matters most - the joy of the moment.
+                    </p>
+                </div>
+                <div class="vision-card">
+                    <h3><span class="vision-icon">🌟</span> Our Vision</h3>
+                    <p>
+                        To become the go-to platform for celebration management, where every special moment is perfectly orchestrated and every emotion is carefully carried from planning to execution.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="page-section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span>📞</span>
+                    <span>Get In Touch</span>
+                </div>
+                <h2 class="section-title">Let's Plan Your Next Celebration</h2>
+                <p class="section-description">Reach out to us and let's make your special moments unforgettable</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h3 class="contact-form-title">
+                        📝 Quick Contact Form
+                    </h3>
+                    <form id="quickContactForm">
+                        <div class="form-group">
+                            <label for="quickName">Your Name</label>
+                            <input type="text" id="quickName" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quickMobile">Mobile Number</label>
+                            <input type="tel" id="quickMobile" name="mobile" placeholder="+91 98765 43210" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quickMessage">Message</label>
+                            <textarea id="quickMessage" name="message" rows="4" placeholder="Tell us how we can help you celebrate..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary full-width">
+                            Send Message 📱
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3 class="contact-card-title">
+                            💬 Direct WhatsApp Contact
+                        </h3>
+                        <p class="contact-card-description">
+                            For immediate assistance or quick orders, chat with us directly on WhatsApp. We're here to help 24/7!
+                        </p>
+                        <a href="https://wa.me/919876543210?text=Hi! I need help with celebration planning 🎉" 
+                           class="whatsapp-button" 
+                           target="_blank">
+                            <span>📱</span>
+                            Chat on WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="contact-details">
+                        <h3 class="contact-details-title">📍 Contact Information</h3>
+                        <div class="contact-items">
+                            <div class="contact-item">
+                                <span class="contact-icon">📱</span>
+                                <span>+91 98765 43210</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">✉️</span>
+                                <span>hello@wecae.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📍</span>
+                                <span>Kerala, India</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">🕒</span>
+                                <span>24/7 Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919876543210?text=Hi! I want to celebrate with Wecae 🎉" class="whatsapp-float" target="_blank">
+        📱
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">🎂</div>
+                    <span class="footer-logo-text">Wecae</span>
+                </div>
+                <p class="footer-tagline">"We carry emotion"</p>
+                <p class="footer-description">
+                    Your trusted partner in making every celebration memorable and stress-free. From birthdays to anniversaries, we've got you covered.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Services</h4>
+                <div class="footer-links">
+                    <a href="#services" class="footer-link">Cake Delivery</a>
+                    <a href="#services" class="footer-link">Party Essentials</a>
+                    <a href="#services" class="footer-link">Surprise Packages</a>
+                    <a href="order.html" class="footer-link">Start Order</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <div class="footer-links">
+                    <a href="#about" class="footer-link">About Us</a>
+                    <a href="#how-it-works" class="footer-link">How It Works</a>
+                    <a href="#contact" class="footer-link">Contact</a>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="footer-links">
+                    <a href="https://wa.me/919876543210" class="footer-link" target="_blank">WhatsApp</a>
+                    <a href="mailto:hello@wecae.com" class="footer-link">Email Us</a>
+                    <a href="#" class="footer-link">Instagram</a>
+                    <a href="#" class="footer-link">Facebook</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Wecae. All rights reserved. Made with ❤️ for celebrations.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
