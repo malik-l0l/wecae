@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <title>Premium Number Picker</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -21,41 +21,63 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px 0;
+            margin: 0;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
         
         .picker-container {
             background: #ffffff;
             border-radius: 16px;
-            padding: 30px 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
-                        0 20px 40px rgba(0, 0, 0, 0.05);
-            max-width: 600px;
+            padding: 40px 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05),
+                        0 8px 30px rgba(0, 0, 0, 0.08),
+                        0 0 0 0.5px rgba(0, 0, 0, 0.02);
+            max-width: 640px;
             width: 100%;
-            margin: 20px;
+            margin: 0 16px;
             border: 0.5px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .picker-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
+            pointer-events: none;
         }
         
         .picker-title {
             text-align: center;
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: 700;
             color: #1d1d1f;
-            margin-bottom: 30px;
+            margin-bottom: 36px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            letter-spacing: -0.02em;
         }
         
         .pickers-row {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: nowrap;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+            justify-items: center;
+            width: 100%;
         }
         
         .number-picker {
-            flex: 1;
-            max-width: 160px;
+            width: 100%;
+            max-width: 180px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
@@ -66,34 +88,40 @@
         
         .picker-label {
             text-align: center;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
             color: #8e8e93;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            line-height: 1.2;
         }
         
         .picker-wheel {
             position: relative;
-            height: 200px;
-            background: #f2f2f7;
-            border-radius: 12px;
+            height: 220px;
+            background: #f8f8f9;
+            border-radius: 14px;
             overflow: hidden;
-            border: 0.5px solid rgba(0, 0, 0, 0.04);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
         }
         
         .picker-wheel:hover {
-            background: #f9f9f9;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            background: #f5f5f7;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06),
+                        0 4px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
         }
         
         .picker-wheel.active {
             background: #ffffff;
-            box-shadow: 0 0 0 2px #007aff,
-                        0 2px 10px rgba(0, 122, 255, 0.15);
+            box-shadow: inset 0 0 0 2px #007aff,
+                        inset 0 1px 2px rgba(0, 122, 255, 0.1),
+                        0 8px 25px rgba(0, 122, 255, 0.15);
             border-color: #007aff;
+            transform: translateY(-2px);
         }
         
         .numbers-container {
@@ -102,6 +130,10 @@
             overflow: hidden;
             cursor: grab;
             user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            touch-action: pan-y;
         }
         
         .numbers-container:active {
@@ -111,40 +143,33 @@
         .numbers-list {
             position: absolute;
             width: 100%;
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform;
         }
         
         .number-item {
-            height: 40px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 400;
             color: #c7c7cc;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
+            letter-spacing: -0.01em;
         }
         
         .number-item.active {
             color: #1d1d1f;
-            font-weight: 600;
-            font-size: 24px;
-            transform: scale(1.1);
+            font-weight: 700;
+            font-size: 26px;
+            transform: scale(1.05);
+            text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
         }
         
         .selection-indicator {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 40px;
-            transform: translateY(-50%);
-            background: rgba(0, 122, 255, 0.08);
-            border: 0.5px solid rgba(0, 122, 255, 0.2);
-            border-radius: 8px;
-            pointer-events: none;
-            opacity: 0.8;
+            display: none;
         }
         
         .fade-overlay {
@@ -159,17 +184,19 @@
         .fade-overlay.top {
             top: 0;
             background: linear-gradient(to bottom, 
-                rgba(242, 242, 247, 1) 0%, 
-                rgba(242, 242, 247, 0.8) 50%,
-                rgba(242, 242, 247, 0) 100%);
+                rgba(248, 248, 249, 1) 0%, 
+                rgba(248, 248, 249, 0.95) 30%,
+                rgba(248, 248, 249, 0.7) 70%,
+                rgba(248, 248, 249, 0) 100%);
         }
         
         .fade-overlay.bottom {
             bottom: 0;
             background: linear-gradient(to top, 
-                rgba(242, 242, 247, 1) 0%, 
-                rgba(242, 242, 247, 0.8) 50%,
-                rgba(242, 242, 247, 0) 100%);
+                rgba(248, 248, 249, 1) 0%, 
+                rgba(248, 248, 249, 0.95) 30%,
+                rgba(248, 248, 249, 0.7) 70%,
+                rgba(248, 248, 249, 0) 100%);
         }
         
         .haptic-feedback {
@@ -215,18 +242,42 @@
             }
         }
         
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
             .picker-container {
-                margin: 10px;
-                padding: 25px 15px;
+                margin: 0 12px;
+                padding: 32px 20px;
             }
             
             .pickers-row {
-                gap: 15px;
+                gap: 16px;
             }
             
             .number-picker {
-                max-width: 120px;
+                max-width: 140px;
+            }
+            
+            .picker-wheel {
+                height: 200px;
+            }
+            
+            .picker-title {
+                font-size: 24px;
+                margin-bottom: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .picker-container {
+                margin: 0 8px;
+                padding: 24px 16px;
+            }
+            
+            .pickers-row {
+                gap: 12px;
+            }
+            
+            .number-picker {
+                max-width: 110px;
             }
             
             .picker-wheel {
@@ -235,23 +286,38 @@
             
             .picker-title {
                 font-size: 20px;
-                margin-bottom: 25px;
+                margin-bottom: 24px;
+            }
+            
+            .picker-label {
+                font-size: 11px;
+                margin-bottom: 12px;
+            }
+            
+            .number-item {
+                font-size: 16px;
+                height: 40px;
+            }
+            
+            .number-item.active {
+                font-size: 22px;
             }
         }
         
-        /* Dark mode removed - keeping white iPhone aesthetic */
-        
+        /* Premium glass effect for active wheels */
         .picker-wheel.active .fade-overlay.top {
             background: linear-gradient(to bottom, 
                 rgba(255, 255, 255, 1) 0%, 
-                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0.95) 30%,
+                rgba(255, 255, 255, 0.7) 70%,
                 rgba(255, 255, 255, 0) 100%);
         }
         
         .picker-wheel.active .fade-overlay.bottom {
             background: linear-gradient(to top, 
                 rgba(255, 255, 255, 1) 0%, 
-                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0.95) 30%,
+                rgba(255, 255, 255, 0.7) 70%,
                 rgba(255, 255, 255, 0) 100%);
         }
     </style>
@@ -311,7 +377,7 @@
                     percentage: { value: 75, min: 0, max: 100, element: null }
                 };
                 
-                this.itemHeight = 40;
+                this.itemHeight = 44;
                 this.visibleItems = 5;
                 this.centerOffset = (this.visibleItems - 1) / 2 * this.itemHeight;
                 
@@ -509,17 +575,56 @@
                 
                 // Force reflow
                 feedback.offsetHeight;
-                
                 feedback.classList.add('active');
                 
-                // Enhanced mobile vibration - more iPhone-like pattern
+                // Enhanced Android vibration support with multiple patterns
                 if ('vibrate' in navigator) {
-                    navigator.vibrate(7); // Shorter, crisper vibration
+                    // Try different vibration patterns for better Android support
+                    try {
+                        // Pattern: vibrate 5ms, pause 5ms, vibrate 5ms
+                        navigator.vibrate([5, 5, 5]);
+                    } catch (e) {
+                        // Fallback to single vibration
+                        navigator.vibrate(8);
+                    }
+                }
+                
+                // Alternative haptic feedback methods for Android
+                try {
+                    // Check for Android-specific vibration API
+                    if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
+                        DeviceMotionEvent.requestPermission().then(response => {
+                            if (response === 'granted') {
+                                navigator.vibrate(8);
+                            }
+                        });
+                    }
+                    
+                    // Try Gamepad Haptic API if available (works on some Android devices)
+                    if ('getGamepads' in navigator) {
+                        const gamepads = navigator.getGamepads();
+                        for (let gamepad of gamepads) {
+                            if (gamepad && gamepad.vibrationActuator) {
+                                gamepad.vibrationActuator.playEffect('dual-rumble', {
+                                    duration: 50,
+                                    strongMagnitude: 0.3,
+                                    weakMagnitude: 0.3
+                                });
+                            }
+                        }
+                    }
+                } catch (e) {
+                    // Continue silently if these APIs are not available
                 }
                 
                 // Enhanced audio feedback - more iPhone-like sound
                 try {
                     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    
+                    // Check if we need to resume context (required on some mobile browsers)
+                    if (audioContext.state === 'suspended') {
+                        audioContext.resume();
+                    }
                     
                     // Create multiple oscillators for richer sound
                     const oscillator1 = audioContext.createOscillator();
@@ -548,22 +653,22 @@
                     
                     // iPhone-like volume envelope - quick attack, smooth decay
                     gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-                    gainNode.gain.linearRampToValueAtTime(0.03, audioContext.currentTime + 0.01);
-                    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.08);
+                    gainNode.gain.linearRampToValueAtTime(0.025, audioContext.currentTime + 0.008);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.06);
                     
                     // Slight frequency modulation for more organic feel
-                    oscillator1.frequency.linearRampToValueAtTime(1150, audioContext.currentTime + 0.08);
-                    oscillator2.frequency.linearRampToValueAtTime(2300, audioContext.currentTime + 0.08);
+                    oscillator1.frequency.linearRampToValueAtTime(1150, audioContext.currentTime + 0.06);
+                    oscillator2.frequency.linearRampToValueAtTime(2300, audioContext.currentTime + 0.06);
                     
                     oscillator1.start();
                     oscillator2.start();
-                    oscillator1.stop(audioContext.currentTime + 0.08);
-                    oscillator2.stop(audioContext.currentTime + 0.08);
+                    oscillator1.stop(audioContext.currentTime + 0.06);
+                    oscillator2.stop(audioContext.currentTime + 0.06);
                     
                 } catch (e) {
                     // Fallback to simpler audio if Web Audio API fails
                     try {
-                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        const audioContext = new (window.AudioContext || webkitAudioContext)();
                         const oscillator = audioContext.createOscillator();
                         const gainNode = audioContext.createGain();
                         
@@ -573,12 +678,16 @@
                         oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
                         oscillator.type = 'sine';
                         gainNode.gain.setValueAtTime(0.02, audioContext.currentTime);
-                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.06);
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.05);
                         
                         oscillator.start();
-                        oscillator.stop(audioContext.currentTime + 0.06);
+                        oscillator.stop(audioContext.currentTime + 0.05);
                     } catch (e2) {
-                        // Silently fail if audio is not supported at all
+                        // Create a visual feedback pulse if audio fails
+                        document.body.style.transform = 'scale(1.001)';
+                        setTimeout(() => {
+                            document.body.style.transform = 'scale(1)';
+                        }, 50);
                     }
                 }
             }
