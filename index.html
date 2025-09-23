@@ -3,562 +3,571 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Circular Dial</title>
+    <title>Premium Number Picker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #6750A4;
-            --primary-light: #8168B8;
-            --primary-dark: #5A4494;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap');
+        
         * {
-            box-sizing: border-box;
-        }
-
-        body {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            background: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            overflow-x: hidden;
         }
-
-        .dial-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .dial {
-            position: relative;
-            width: 384px;
-            height: 384px;
-            border-radius: 50%;
-            cursor: pointer;
-            user-select: none;
-            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            touch-action: none;
-        }
-
-        .dial:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .dial.dragging {
-            transform: scale(1.05);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        .dial.haptic {
-            animation: hapticPulse 0.15s ease-out;
-        }
-
-        .dial.haptic-strong {
-            animation: hapticPulseStrong 0.2s ease-out;
-        }
-
-        @keyframes hapticPulse {
-            0% { transform: scale(1.02); }
-            50% { 
-                transform: scale(1.08); 
-                box-shadow: 0 0 0 8px rgba(103, 80, 164, 0.2);
-            }
-            100% { transform: scale(1.02); }
-        }
-
-        @keyframes hapticPulseStrong {
-            0% { transform: scale(1.02); }
-            50% { 
-                transform: scale(1.1); 
-                box-shadow: 0 0 0 12px rgba(103, 80, 164, 0.3);
-            }
-            100% { transform: scale(1.02); }
-        }
-
-        .dial-inner-shadow {
-            position: absolute;
-            inset: 8px;
-            border-radius: 50%;
-            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        .dial-svg {
-            position: absolute;
-            inset: 0;
+        
+        .picker-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+                        0 0 0 1px rgba(255, 255, 255, 0.2);
+            max-width: 600px;
             width: 100%;
-            height: 100%;
-            overflow: visible;
-            pointer-events: none;
+            margin: 20px;
         }
-
-        .tick-line {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        .picker-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
         }
-
-        .tick-number {
-            font-size: 13px;
-            font-weight: 500;
-            fill: #8e8e93;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        .pickers-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: nowrap;
         }
-
-        .tick-number.active {
+        
+        .number-picker {
+            flex: 1;
+            max-width: 160px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .number-picker:nth-child(1) { animation-delay: 0.3s; }
+        .number-picker:nth-child(2) { animation-delay: 0.4s; }
+        .number-picker:nth-child(3) { animation-delay: 0.5s; }
+        
+        .picker-label {
+            text-align: center;
             font-size: 14px;
-            fill: #1d1d1f;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-
-        .progress-arc {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        .picker-wheel {
+            position: relative;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
-        .dial-handle {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        .picker-wheel:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: rgba(102, 126, 234, 0.3);
         }
-
-        .dial.dragging .dial-handle {
-            transform: scale(1.25);
+        
+        .picker-wheel.active {
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3),
+                        0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
         }
-
-        .dial:hover .dial-handle {
-            transform: scale(1.1);
+        
+        .numbers-container {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
         }
-
-        .center-display {
+        
+        .numbers-container:active {
+            cursor: grabbing;
+        }
+        
+        .numbers-list {
             position: absolute;
-            inset: 0;
+            width: 100%;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .number-item {
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 20px;
+            font-weight: 400;
+            color: #999;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+        
+        .number-item.active {
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 24px;
+            transform: scale(1.1);
+        }
+        
+        .selection-indicator {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 40px;
+            transform: translateY(-50%);
+            background: linear-gradient(90deg, 
+                rgba(102, 126, 234, 0.1) 0%, 
+                rgba(102, 126, 234, 0.2) 50%, 
+                rgba(102, 126, 234, 0.1) 100%);
+            border-radius: 8px;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        .fade-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 60px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .fade-overlay.top {
+            top: 0;
+            background: linear-gradient(to bottom, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(255, 255, 255, 0.7) 50%,
+                rgba(255, 255, 255, 0) 100%);
+        }
+        
+        .fade-overlay.bottom {
+            bottom: 0;
+            background: linear-gradient(to top, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(255, 255, 255, 0.7) 50%,
+                rgba(255, 255, 255, 0) 100%);
+        }
+        
+        .haptic-feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
             pointer-events: none;
         }
-
-        .center-card {
-            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 32px;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
+        
+        .haptic-feedback.active {
+            animation: hapticPulse 0.3s ease-out;
         }
-
-        .center-card.haptic {
-            transform: scale(1.1);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(145deg, rgba(103, 80, 164, 0.08), rgba(103, 80, 164, 0.04));
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
-        .center-card.dragging {
-            transform: scale(1.05);
+        
+        @keyframes hapticPulse {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(3);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
         }
-
-        .center-value {
-            font-size: 48px;
-            font-weight: 300;
-            color: #1d1d1f;
-            line-height: 1;
-            font-variant-numeric: tabular-nums;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .center-value.haptic {
-            color: #1d1d1f;
-            transform: scale(1.05);
-        }
-
-        .center-label {
-            font-size: 12px;
-            font-weight: 500;
-            color: #8e8e93;
-            margin-top: 8px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .instructions {
-            margin-top: 40px;
-            text-align: center;
-            color: #8e8e93;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .instructions p {
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .instructions .sub-text {
-            display: block;
-            margin-top: 4px;
-            font-size: 12px;
-            color: #c7c7cc;
-        }
-
-        @media (max-width: 480px) {
-            .dial {
-                width: 320px;
-                height: 320px;
+        
+        @media (max-width: 576px) {
+            .picker-container {
+                margin: 10px;
+                padding: 25px 15px;
             }
             
-            .center-card {
-                padding: 24px;
+            .pickers-row {
+                gap: 15px;
             }
             
-            .center-value {
-                font-size: 40px;
+            .number-picker {
+                max-width: 120px;
+            }
+            
+            .picker-wheel {
+                height: 180px;
+            }
+            
+            .picker-title {
+                font-size: 20px;
+                margin-bottom: 25px;
+            }
+        }
+        
+        /* Dark mode touch */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            }
+            
+            .picker-container {
+                background: rgba(255, 255, 255, 0.1);
+                color: white;
+            }
+            
+            .picker-title {
+                color: white;
+            }
+            
+            .picker-label {
+                color: rgba(255, 255, 255, 0.7);
+            }
+            
+            .picker-wheel {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .number-item {
+                color: rgba(255, 255, 255, 0.5);
+            }
+            
+            .number-item.active {
+                color: white;
             }
         }
     </style>
 </head>
 <body>
-    <div class="dial-container">
-        <div class="dial" id="dial">
-            <div class="dial-inner-shadow"></div>
+    <div class="picker-container">
+        <h2 class="picker-title">Attendance Calculator</h2>
+        
+        <div class="pickers-row">
+            <div class="number-picker">
+                <div class="picker-label">Attended</div>
+                <div class="picker-wheel" data-picker="attended">
+                    <div class="fade-overlay top"></div>
+                    <div class="fade-overlay bottom"></div>
+                    <div class="selection-indicator"></div>
+                    <div class="numbers-container">
+                        <div class="numbers-list" id="attended-list"></div>
+                    </div>
+                </div>
+            </div>
             
-            <svg class="dial-svg" viewBox="-200 -200 400 400" id="dialSvg">
-                <!-- Background circle -->
-                <circle cx="0" cy="0" r="137" fill="none" stroke="#F2F2F7" stroke-width="4"/>
-                
-                <!-- Gradient definitions -->
-                <defs>
-                    <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="var(--primary-light)" />
-                        <stop offset="50%" stop-color="var(--primary-color)" />
-                        <stop offset="100%" stop-color="var(--primary-dark)" />
-                    </linearGradient>
-                </defs>
-                
-                <!-- Progress arc -->
-                <circle 
-                    id="progressArc"
-                    cx="0" 
-                    cy="0" 
-                    r="137" 
-                    fill="none" 
-                    stroke="url(#progressGradient)" 
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    class="progress-arc"
-                    transform="rotate(-90)"
-                />
-                
-                <!-- Tick marks and numbers will be generated here -->
-                <g id="tickMarks"></g>
-                
-                <!-- Handle -->
-                <g id="dialHandle" class="dial-handle">
-                    <!-- Handle shadow -->
-                    <circle cx="1" cy="-135" r="16" fill="rgba(0,0,0,0.15)" />
-                    <!-- Handle background -->
-                    <circle cx="0" cy="-137" r="16" fill="white" stroke="#E5E5EA" stroke-width="1" />
-                    <!-- Handle center -->
-                    <circle cx="0" cy="-137" r="12" fill="var(--primary-color)" />
-                    <!-- Handle highlight -->
-                    <circle cx="-2" cy="-139" r="4" fill="rgba(255,255,255,0.4)" />
-                </g>
-            </svg>
+            <div class="number-picker">
+                <div class="picker-label">Total</div>
+                <div class="picker-wheel" data-picker="total">
+                    <div class="fade-overlay top"></div>
+                    <div class="fade-overlay bottom"></div>
+                    <div class="selection-indicator"></div>
+                    <div class="numbers-container">
+                        <div class="numbers-list" id="total-list"></div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="center-display">
-                <div class="center-card" id="centerCard">
-                    <div class="center-value" id="centerValue">50</div>
-                    <div class="center-label">Selected Value</div>
+            <div class="number-picker">
+                <div class="picker-label">Percentage</div>
+                <div class="picker-wheel" data-picker="percentage">
+                    <div class="fade-overlay top"></div>
+                    <div class="fade-overlay bottom"></div>
+                    <div class="selection-indicator"></div>
+                    <div class="numbers-container">
+                        <div class="numbers-list" id="percentage-list"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="instructions">
-            <p>
-                Touch anywhere on the dial or drag the handle to select a value.
-                <span class="sub-text">Values automatically snap to multiples of 5</span>
-            </p>
-        </div>
     </div>
-
+    
+    <div class="haptic-feedback" id="hapticFeedback"></div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        class PremiumCircularDial {
+        class PremiumNumberPicker {
             constructor() {
-                this.value = 50;
-                this.isDragging = false;
-                this.isHovering = false;
-                this.lastHapticValue = 50;
-                this.lastAngle = 0;
-                this.rafId = null;
+                this.pickers = {
+                    attended: { value: 0, min: 0, max: 200, element: null },
+                    total: { value: 0, min: 0, max: 200, element: null },
+                    percentage: { value: 0, min: 0, max: 100, element: null }
+                };
                 
-                this.dial = document.getElementById('dial');
-                this.dialHandle = document.getElementById('dialHandle');
-                this.centerValue = document.getElementById('centerValue');
-                this.centerCard = document.getElementById('centerCard');
-                this.progressArc = document.getElementById('progressArc');
-                this.tickMarks = document.getElementById('tickMarks');
+                this.itemHeight = 40;
+                this.visibleItems = 5;
+                this.centerOffset = (this.visibleItems - 1) / 2 * this.itemHeight;
                 
                 this.init();
             }
             
             init() {
-                this.generateTickMarks();
-                this.updateDisplay();
-                this.bindEvents();
+                this.createNumberLists();
+                this.setupEventListeners();
+                this.updateAllPickers();
+                
+                // Add entrance animation delay
+                setTimeout(() => {
+                    document.body.classList.add('loaded');
+                }, 100);
             }
             
-            getAngleFromValue(value) {
-                return (value / 100) * 360;
-            }
-            
-            getValueFromAngle(angle) {
-                const normalizedAngle = ((angle % 360) + 360) % 360;
-                return Math.max(0, Math.min(100, Math.round((normalizedAngle / 360) * 100)));
-            }
-            
-            getAngleFromEvent(event, rect) {
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                let clientX, clientY;
-                
-                if (event.touches && event.touches[0]) {
-                    clientX = event.touches[0].clientX;
-                    clientY = event.touches[0].clientY;
-                } else if (event.changedTouches && event.changedTouches[0]) {
-                    clientX = event.changedTouches[0].clientX;
-                    clientY = event.changedTouches[0].clientY;
-                } else {
-                    clientX = event.clientX;
-                    clientY = event.clientY;
-                }
-                
-                const deltaX = clientX - centerX;
-                const deltaY = clientY - centerY;
-                
-                // Ensure minimum distance from center for better touch experience
-                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                if (distance < 20) return this.lastAngle;
-                
-                let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-                angle = (angle + 90 + 360) % 360; // Adjust so 0° is at top
-                
-                this.lastAngle = angle;
-                return angle;
-            }
-            
-            triggerHapticFeedback(newValue) {
-                if (newValue % 5 === 0 && newValue !== this.lastHapticValue) {
-                    this.lastHapticValue = newValue;
+            createNumberLists() {
+                Object.keys(this.pickers).forEach(pickerId => {
+                    const list = document.getElementById(`${pickerId}-list`);
+                    const picker = this.pickers[pickerId];
                     
-                    const isStrong = newValue % 10 === 0;
-                    const hapticClass = isStrong ? 'haptic-strong' : 'haptic';
-                    
-                    this.dial.classList.add(hapticClass);
-                    this.centerCard.classList.add('haptic');
-                    this.centerValue.classList.add('haptic');
-                    
-                    setTimeout(() => {
-                        this.dial.classList.remove(hapticClass);
-                        this.centerCard.classList.remove('haptic');
-                        this.centerValue.classList.remove('haptic');
-                    }, isStrong ? 200 : 150);
-                    
-                    // Real device vibration
-                    if ('vibrate' in navigator) {
-                        navigator.vibrate(isStrong ? [4, 2, 4] : [2]);
+                    // Add padding items for smooth scrolling
+                    for (let i = 0; i < this.visibleItems; i++) {
+                        const item = document.createElement('div');
+                        item.className = 'number-item';
+                        item.textContent = '';
+                        list.appendChild(item);
                     }
-                }
-            }
-            
-            updateValue(newValue) {
-                if (this.rafId) {
-                    cancelAnimationFrame(this.rafId);
-                }
-                
-                this.rafId = requestAnimationFrame(() => {
-                    this.value = newValue;
-                    this.updateDisplay();
-                    this.triggerHapticFeedback(newValue);
+                    
+                    // Add actual numbers
+                    for (let i = picker.min; i <= picker.max; i++) {
+                        const item = document.createElement('div');
+                        item.className = 'number-item';
+                        item.textContent = i;
+                        item.dataset.value = i;
+                        list.appendChild(item);
+                    }
+                    
+                    // Add padding items at the end
+                    for (let i = 0; i < this.visibleItems; i++) {
+                        const item = document.createElement('div');
+                        item.className = 'number-item';
+                        item.textContent = '';
+                        list.appendChild(item);
+                    }
+                    
+                    picker.element = list;
                 });
             }
             
-            updateDisplay() {
-                const angle = this.getAngleFromValue(this.value);
-                const circumference = 2 * Math.PI * 137;
-                const dashArray = (this.value / 100) * circumference;
-                const dashOffset = circumference / 4; // Start from top
-                
-                // Update handle rotation
-                this.dialHandle.style.transform = `rotate(${angle}deg)`;
-                
-                // Update progress arc
-                this.progressArc.style.strokeDasharray = `${dashArray} ${circumference}`;
-                this.progressArc.style.strokeDashoffset = `${dashOffset}`;
-                
-                // Update center value
-                this.centerValue.textContent = this.value;
-                
-                // Update tick marks
-                this.updateTickMarks();
-            }
-            
-            generateTickMarks() {
-                this.tickMarks.innerHTML = '';
-                
-                for (let i = 5; i <= 100; i += 5) {
-                    const angle = this.getAngleFromValue(i);
-                    const isMainTick = i % 10 === 0;
+            setupEventListeners() {
+                Object.keys(this.pickers).forEach(pickerId => {
+                    const wheel = document.querySelector(`[data-picker="${pickerId}"]`);
+                    const container = wheel.querySelector('.numbers-container');
                     
-                    const tickLength = isMainTick ? 18 : 10;
-                    const outerRadius = 142;
-                    const innerRadius = outerRadius - tickLength;
+                    let isScrolling = false;
+                    let scrollTimeout;
                     
-                    const x1 = Math.sin((angle * Math.PI) / 180) * outerRadius;
-                    const y1 = -Math.cos((angle * Math.PI) / 180) * outerRadius;
-                    const x2 = Math.sin((angle * Math.PI) / 180) * innerRadius;
-                    const y2 = -Math.cos((angle * Math.PI) / 180) * innerRadius;
+                    // Mouse wheel events
+                    container.addEventListener('wheel', (e) => {
+                        e.preventDefault();
+                        const delta = e.deltaY > 0 ? 1 : -1;
+                        this.changeValue(pickerId, delta);
+                        this.triggerHapticFeedback();
+                    });
                     
-                    // Create tick line
-                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line.setAttribute('x1', x1);
-                    line.setAttribute('y1', y1);
-                    line.setAttribute('x2', x2);
-                    line.setAttribute('y2', y2);
-                    line.setAttribute('stroke', '#C7C7CC');
-                    line.setAttribute('stroke-width', isMainTick ? '2' : '1');
-                    line.setAttribute('stroke-linecap', 'round');
-                    line.classList.add('tick-line');
-                    line.dataset.value = i;
+                    // Touch events for mobile
+                    let startY = 0;
+                    let lastY = 0;
+                    let velocity = 0;
+                    let touching = false;
                     
-                    this.tickMarks.appendChild(line);
+                    container.addEventListener('touchstart', (e) => {
+                        touching = true;
+                        startY = lastY = e.touches[0].clientY;
+                        velocity = 0;
+                        wheel.classList.add('active');
+                    });
                     
-                    // Create numbers for multiples of 10
-                    if (isMainTick) {
-                        const numberRadius = outerRadius + 24;
-                        const numberX = Math.sin((angle * Math.PI) / 180) * numberRadius;
-                        const numberY = -Math.cos((angle * Math.PI) / 180) * numberRadius;
+                    container.addEventListener('touchmove', (e) => {
+                        e.preventDefault();
+                        if (!touching) return;
                         
-                        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                        text.setAttribute('x', numberX);
-                        text.setAttribute('y', numberY);
-                        text.setAttribute('text-anchor', 'middle');
-                        text.setAttribute('dominant-baseline', 'middle');
-                        text.classList.add('tick-number');
-                        text.dataset.value = i;
-                        text.textContent = i;
+                        const currentY = e.touches[0].clientY;
+                        const deltaY = lastY - currentY;
+                        velocity = deltaY;
                         
-                        this.tickMarks.appendChild(text);
-                    }
-                }
-            }
-            
-            updateTickMarks() {
-                const lines = this.tickMarks.querySelectorAll('.tick-line');
-                const numbers = this.tickMarks.querySelectorAll('.tick-number');
-                
-                lines.forEach(line => {
-                    const tickValue = parseInt(line.dataset.value);
-                    const isCurrentValue = Math.abs(this.value - tickValue) <= 2.5;
-                    const isMainTick = tickValue % 10 === 0;
+                        if (Math.abs(deltaY) > 10) {
+                            const direction = deltaY > 0 ? 1 : -1;
+                            this.changeValue(pickerId, direction);
+                            this.triggerHapticFeedback();
+                            lastY = currentY;
+                        }
+                    });
                     
-                    line.setAttribute('stroke', isCurrentValue ? '#6750A4' : '#C7C7CC');
-                    line.setAttribute('stroke-width', isCurrentValue ? '3' : (isMainTick ? '2' : '1'));
-                });
-                
-                numbers.forEach(number => {
-                    const tickValue = parseInt(number.dataset.value);
-                    const isNearCurrent = Math.abs(this.value - tickValue) <= 5;
+                    container.addEventListener('touchend', () => {
+                        touching = false;
+                        wheel.classList.remove('active');
+                        
+                        // Momentum scrolling
+                        if (Math.abs(velocity) > 15) {
+                            const steps = Math.min(Math.floor(Math.abs(velocity) / 15), 3);
+                            const direction = velocity > 0 ? 1 : -1;
+                            
+                            for (let i = 1; i <= steps; i++) {
+                                setTimeout(() => {
+                                    this.changeValue(pickerId, direction);
+                                    this.triggerHapticFeedback();
+                                }, i * 100);
+                            }
+                        }
+                    });
                     
-                    if (isNearCurrent) {
-                        number.classList.add('active');
-                    } else {
-                        number.classList.remove('active');
+                    // Focus effects
+                    container.addEventListener('mouseenter', () => {
+                        wheel.classList.add('active');
+                    });
+                    
+                    container.addEventListener('mouseleave', () => {
+                        wheel.classList.remove('active');
+                    });
+                    
+                    // Keyboard support
+                    container.addEventListener('keydown', (e) => {
+                        if (e.key === 'ArrowUp') {
+                            e.preventDefault();
+                            this.changeValue(pickerId, -1);
+                            this.triggerHapticFeedback();
+                        } else if (e.key === 'ArrowDown') {
+                            e.preventDefault();
+                            this.changeValue(pickerId, 1);
+                            this.triggerHapticFeedback();
+                        }
+                    });
+                    
+                    container.tabIndex = 0;
+                });
+            }
+            
+            changeValue(pickerId, delta) {
+                const picker = this.pickers[pickerId];
+                const newValue = Math.max(picker.min, Math.min(picker.max, picker.value + delta));
+                
+                if (newValue !== picker.value) {
+                    picker.value = newValue;
+                    this.updatePicker(pickerId);
+                }
+            }
+            
+            updatePicker(pickerId) {
+                const picker = this.pickers[pickerId];
+                const list = picker.element;
+                
+                // Calculate position (account for padding items)
+                const targetIndex = picker.value - picker.min + this.visibleItems;
+                const translateY = -(targetIndex * this.itemHeight) + this.centerOffset;
+                
+                list.style.transform = `translateY(${translateY}px)`;
+                
+                // Update active states
+                const items = list.querySelectorAll('.number-item');
+                items.forEach((item, index) => {
+                    item.classList.remove('active');
+                    if (index === targetIndex) {
+                        item.classList.add('active');
                     }
                 });
             }
             
-            handleStart(event) {
-                event.preventDefault();
-                
-                const rect = this.dial.getBoundingClientRect();
-                const angle = this.getAngleFromEvent(event, rect);
-                const newValue = this.getValueFromAngle(angle);
-                
-                this.updateValue(newValue);
-                this.isDragging = true;
-                
-                this.dial.classList.add('dragging');
-                this.centerCard.classList.add('dragging');
-                
-                document.body.style.userSelect = 'none';
-                document.body.style.touchAction = 'none';
+            updateAllPickers() {
+                Object.keys(this.pickers).forEach(pickerId => {
+                    this.updatePicker(pickerId);
+                });
             }
             
-            handleMove(event) {
-                if (!this.isDragging) return;
+            triggerHapticFeedback() {
+                const feedback = document.getElementById('hapticFeedback');
+                feedback.classList.remove('active');
                 
-                event.preventDefault();
+                // Force reflow
+                feedback.offsetHeight;
                 
-                const rect = this.dial.getBoundingClientRect();
-                const angle = this.getAngleFromEvent(event, rect);
-                const newValue = this.getValueFromAngle(angle);
+                feedback.classList.add('active');
                 
-                if (Math.abs(newValue - this.value) <= 50) {
-                    this.updateValue(newValue);
+                // Try to use actual vibration on mobile devices
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(10);
+                }
+                
+                // Audio feedback (very subtle)
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.01, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                    
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.1);
+                } catch (e) {
+                    // Silently fail if audio context is not supported
                 }
             }
             
-            handleEnd(event) {
-                if (event) event.preventDefault();
-                
-                this.isDragging = false;
-                
-                this.dial.classList.remove('dragging');
-                this.centerCard.classList.remove('dragging');
-                
-                document.body.style.userSelect = '';
-                document.body.style.touchAction = '';
-                
-                // Snap to nearest multiple of 5
-                const snappedValue = Math.round(this.value / 5) * 5;
-                if (snappedValue !== this.value) {
-                    setTimeout(() => this.updateValue(snappedValue), 100);
-                }
+            getValue(pickerId) {
+                return this.pickers[pickerId].value;
             }
             
-            bindEvents() {
-                // Mouse events
-                this.dial.addEventListener('mousedown', (e) => this.handleStart(e));
-                document.addEventListener('mousemove', (e) => this.handleMove(e));
-                document.addEventListener('mouseup', (e) => this.handleEnd(e));
-                
-                // Touch events
-                this.dial.addEventListener('touchstart', (e) => this.handleStart(e), { passive: false });
-                document.addEventListener('touchmove', (e) => this.handleMove(e), { passive: false });
-                document.addEventListener('touchend', (e) => this.handleEnd(e), { passive: false });
-                document.addEventListener('touchcancel', (e) => this.handleEnd(e), { passive: false });
-                
-                // Hover events
-                this.dial.addEventListener('mouseenter', () => {
-                    this.isHovering = true;
-                });
-                
-                this.dial.addEventListener('mouseleave', () => {
-                    this.isHovering = false;
-                });
+            setValue(pickerId, value) {
+                const picker = this.pickers[pickerId];
+                picker.value = Math.max(picker.min, Math.min(picker.max, value));
+                this.updatePicker(pickerId);
             }
         }
         
-        // Initialize the dial when DOM is ready
+        // Initialize the picker when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            new PremiumCircularDial();
+            const picker = new PremiumNumberPicker();
+            
+            // Example: Log values on change (you can remove this)
+            setInterval(() => {
+                const attended = picker.getValue('attended');
+                const total = picker.getValue('total');
+                const percentage = picker.getValue('percentage');
+                
+                // You can use these values as needed
+                console.log(`Attended: ${attended}, Total: ${total}, Percentage: ${percentage}`);
+            }, 1000);
         });
+        
+        // Add smooth scroll behavior for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
     </script>
 </body>
 </html>
