@@ -16,7 +16,7 @@
         
         body {
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f2f2f7;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -25,22 +25,22 @@
         }
         
         .picker-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
+            background: #ffffff;
+            border-radius: 16px;
             padding: 30px 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
-                        0 0 0 1px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
+                        0 20px 40px rgba(0, 0, 0, 0.05);
             max-width: 600px;
             width: 100%;
             margin: 20px;
+            border: 0.5px solid rgba(0, 0, 0, 0.04);
         }
         
         .picker-title {
             text-align: center;
             font-size: 24px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: #1d1d1f;
             margin-bottom: 30px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.2s forwards;
@@ -66,9 +66,9 @@
         
         .picker-label {
             text-align: center;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
-            color: #666;
+            color: #8e8e93;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -77,22 +77,23 @@
         .picker-wheel {
             position: relative;
             height: 200px;
-            background: rgba(0, 0, 0, 0.03);
-            border-radius: 15px;
+            background: #f2f2f7;
+            border-radius: 12px;
             overflow: hidden;
-            border: 2px solid rgba(0, 0, 0, 0.05);
+            border: 0.5px solid rgba(0, 0, 0, 0.04);
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .picker-wheel:hover {
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            border-color: rgba(102, 126, 234, 0.3);
+            background: #f9f9f9;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
         
         .picker-wheel.active {
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3),
-                        0 10px 25px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
+            background: #ffffff;
+            box-shadow: 0 0 0 2px #007aff,
+                        0 2px 10px rgba(0, 122, 255, 0.15);
+            border-color: #007aff;
         }
         
         .numbers-container {
@@ -120,13 +121,13 @@
             justify-content: center;
             font-size: 20px;
             font-weight: 400;
-            color: #999;
+            color: #c7c7cc;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
         }
         
         .number-item.active {
-            color: #1a1a1a;
+            color: #1d1d1f;
             font-weight: 600;
             font-size: 24px;
             transform: scale(1.1);
@@ -139,13 +140,11 @@
             right: 0;
             height: 40px;
             transform: translateY(-50%);
-            background: linear-gradient(90deg, 
-                rgba(102, 126, 234, 0.1) 0%, 
-                rgba(102, 126, 234, 0.2) 50%, 
-                rgba(102, 126, 234, 0.1) 100%);
+            background: rgba(0, 122, 255, 0.08);
+            border: 0.5px solid rgba(0, 122, 255, 0.2);
             border-radius: 8px;
             pointer-events: none;
-            opacity: 0.7;
+            opacity: 0.8;
         }
         
         .fade-overlay {
@@ -160,17 +159,17 @@
         .fade-overlay.top {
             top: 0;
             background: linear-gradient(to bottom, 
-                rgba(255, 255, 255, 0.9) 0%, 
-                rgba(255, 255, 255, 0.7) 50%,
-                rgba(255, 255, 255, 0) 100%);
+                rgba(242, 242, 247, 1) 0%, 
+                rgba(242, 242, 247, 0.8) 50%,
+                rgba(242, 242, 247, 0) 100%);
         }
         
         .fade-overlay.bottom {
             bottom: 0;
             background: linear-gradient(to top, 
-                rgba(255, 255, 255, 0.9) 0%, 
-                rgba(255, 255, 255, 0.7) 50%,
-                rgba(255, 255, 255, 0) 100%);
+                rgba(242, 242, 247, 1) 0%, 
+                rgba(242, 242, 247, 0.8) 50%,
+                rgba(242, 242, 247, 0) 100%);
         }
         
         .haptic-feedback {
@@ -179,7 +178,7 @@
             right: 20px;
             width: 8px;
             height: 8px;
-            background: #667eea;
+            background: #007aff;
             border-radius: 50%;
             opacity: 0;
             transform: scale(0);
@@ -240,37 +239,20 @@
             }
         }
         
-        /* Dark mode touch */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            }
-            
-            .picker-container {
-                background: rgba(255, 255, 255, 0.1);
-                color: white;
-            }
-            
-            .picker-title {
-                color: white;
-            }
-            
-            .picker-label {
-                color: rgba(255, 255, 255, 0.7);
-            }
-            
-            .picker-wheel {
-                background: rgba(255, 255, 255, 0.05);
-                border-color: rgba(255, 255, 255, 0.1);
-            }
-            
-            .number-item {
-                color: rgba(255, 255, 255, 0.5);
-            }
-            
-            .number-item.active {
-                color: white;
-            }
+        /* Dark mode removed - keeping white iPhone aesthetic */
+        
+        .picker-wheel.active .fade-overlay.top {
+            background: linear-gradient(to bottom, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0) 100%);
+        }
+        
+        .picker-wheel.active .fade-overlay.bottom {
+            background: linear-gradient(to top, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0) 100%);
         }
     </style>
 </head>
@@ -280,7 +262,7 @@
         
         <div class="pickers-row">
             <div class="number-picker">
-                <div class="picker-label">Attended</div>
+                <div class="picker-label">Attended Classes</div>
                 <div class="picker-wheel" data-picker="attended">
                     <div class="fade-overlay top"></div>
                     <div class="fade-overlay bottom"></div>
@@ -292,7 +274,7 @@
             </div>
             
             <div class="number-picker">
-                <div class="picker-label">Total</div>
+                <div class="picker-label">Total Classes</div>
                 <div class="picker-wheel" data-picker="total">
                     <div class="fade-overlay top"></div>
                     <div class="fade-overlay bottom"></div>
@@ -304,7 +286,7 @@
             </div>
             
             <div class="number-picker">
-                <div class="picker-label">Percentage</div>
+                <div class="picker-label">Percentage Needed</div>
                 <div class="picker-wheel" data-picker="percentage">
                     <div class="fade-overlay top"></div>
                     <div class="fade-overlay bottom"></div>
@@ -326,7 +308,7 @@
                 this.pickers = {
                     attended: { value: 0, min: 0, max: 200, element: null },
                     total: { value: 0, min: 0, max: 200, element: null },
-                    percentage: { value: 0, min: 0, max: 100, element: null }
+                    percentage: { value: 75, min: 0, max: 100, element: null }
                 };
                 
                 this.itemHeight = 40;
@@ -472,7 +454,22 @@
             
             changeValue(pickerId, delta) {
                 const picker = this.pickers[pickerId];
-                const newValue = Math.max(picker.min, Math.min(picker.max, picker.value + delta));
+                let newValue = Math.max(picker.min, Math.min(picker.max, picker.value + delta));
+                
+                // Special logic for attended classes - also update total to match
+                if (pickerId === 'attended') {
+                    const totalPicker = this.pickers.total;
+                    if (newValue > totalPicker.value) {
+                        totalPicker.value = newValue;
+                        this.updatePicker('total');
+                    }
+                }
+                
+                // Ensure total is never less than attended
+                if (pickerId === 'total') {
+                    const attendedValue = this.pickers.attended.value;
+                    newValue = Math.max(newValue, attendedValue);
+                }
                 
                 if (newValue !== picker.value) {
                     picker.value = newValue;
@@ -515,28 +512,74 @@
                 
                 feedback.classList.add('active');
                 
-                // Try to use actual vibration on mobile devices
+                // Enhanced mobile vibration - more iPhone-like pattern
                 if ('vibrate' in navigator) {
-                    navigator.vibrate(10);
+                    navigator.vibrate(7); // Shorter, crisper vibration
                 }
                 
-                // Audio feedback (very subtle)
+                // Enhanced audio feedback - more iPhone-like sound
                 try {
                     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    const oscillator = audioContext.createOscillator();
+                    
+                    // Create multiple oscillators for richer sound
+                    const oscillator1 = audioContext.createOscillator();
+                    const oscillator2 = audioContext.createOscillator();
                     const gainNode = audioContext.createGain();
+                    const filter = audioContext.createBiquadFilter();
                     
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioContext.destination);
+                    // Connect audio nodes
+                    oscillator1.connect(gainNode);
+                    oscillator2.connect(gainNode);
+                    gainNode.connect(filter);
+                    filter.connect(audioContext.destination);
                     
-                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-                    gainNode.gain.setValueAtTime(0.01, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                    // Configure filter for warmer sound
+                    filter.type = 'lowpass';
+                    filter.frequency.setValueAtTime(2000, audioContext.currentTime);
+                    filter.Q.setValueAtTime(1, audioContext.currentTime);
                     
-                    oscillator.start();
-                    oscillator.stop(audioContext.currentTime + 0.1);
+                    // Primary frequency (like iPhone picker tick)
+                    oscillator1.frequency.setValueAtTime(1200, audioContext.currentTime);
+                    oscillator1.type = 'sine';
+                    
+                    // Harmonic frequency for richness
+                    oscillator2.frequency.setValueAtTime(2400, audioContext.currentTime);
+                    oscillator2.type = 'sine';
+                    
+                    // iPhone-like volume envelope - quick attack, smooth decay
+                    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                    gainNode.gain.linearRampToValueAtTime(0.03, audioContext.currentTime + 0.01);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.08);
+                    
+                    // Slight frequency modulation for more organic feel
+                    oscillator1.frequency.linearRampToValueAtTime(1150, audioContext.currentTime + 0.08);
+                    oscillator2.frequency.linearRampToValueAtTime(2300, audioContext.currentTime + 0.08);
+                    
+                    oscillator1.start();
+                    oscillator2.start();
+                    oscillator1.stop(audioContext.currentTime + 0.08);
+                    oscillator2.stop(audioContext.currentTime + 0.08);
+                    
                 } catch (e) {
-                    // Silently fail if audio context is not supported
+                    // Fallback to simpler audio if Web Audio API fails
+                    try {
+                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+                        oscillator.type = 'sine';
+                        gainNode.gain.setValueAtTime(0.02, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.06);
+                        
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.06);
+                    } catch (e2) {
+                        // Silently fail if audio is not supported at all
+                    }
                 }
             }
             
